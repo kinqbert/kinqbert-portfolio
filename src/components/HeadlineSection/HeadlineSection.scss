@@ -1,0 +1,88 @@
+@import "../../styles/colors.scss";
+
+.headline-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+
+  height: 100vh;
+
+  perspective: 1800px;
+
+  overflow: hidden;
+
+  &__background {
+
+    height: 100vh;
+    aspect-ratio: 1;
+
+    display: grid;
+    grid-template-rows: repeat(40, 1fr);
+    grid-template-columns: repeat(40, 1fr);
+
+    position: absolute;
+    
+    top: -10%;
+
+    overflow: hidden;
+
+    transform: rotateX(50deg) rotateY(-5deg) rotateZ(20deg) scale(1.2);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0px;
+      pointer-events: none;
+      background: radial-gradient(
+        circle,
+        transparent 10%,
+        $tile-container__gradient 80%
+      );
+    }
+  }
+
+  &__background-tile {
+    border: 1px solid $tile__border;
+
+    background-color: $tile__bg--default;
+
+    transition: background-color 1500ms;
+
+    &:hover {
+      transition: background-color 0ms;
+    }
+
+    &--red {
+      &:hover {
+        background-color: $tile__bg--red;
+      }
+    }
+    &--orange {
+      &:hover {
+        background-color: $tile__bg--orange;
+      }
+    }
+    &--yellow {
+      &:hover {
+        background-color: $tile__bg--yellow;
+      }
+    }
+    &--green {
+      &:hover {
+        background-color: $tile__bg--green;
+      }
+    }
+    &--blue {
+      &:hover {
+        background-color: $tile__bg--blue;
+      }
+    }
+    &--purple {
+      &:hover {
+        background-color: $tile__bg--purple;
+      }
+    }
+  }
+}
