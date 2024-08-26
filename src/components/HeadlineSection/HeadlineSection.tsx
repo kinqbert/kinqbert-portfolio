@@ -17,7 +17,8 @@ export default function HeadlineSection() {
   return (
     <section className="headline-section">
       <div className="headline-section__content">
-        <h1>Hello there</h1>
+        <h1 className="headline-section__title">Hello there</h1>
+        <p className="headline-section__subtext">My name is Maksym Perekhodko</p>
       </div>
       <div className="headline-section__background">
         {squaresArray.map((_, index) => {
