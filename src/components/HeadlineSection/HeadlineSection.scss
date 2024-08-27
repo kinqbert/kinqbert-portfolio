@@ -14,10 +14,11 @@
   overflow: hidden;
 
   &__content {
-    margin-top: 400px;
+    height: 85vh;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2px;
 
     text-align: center;
