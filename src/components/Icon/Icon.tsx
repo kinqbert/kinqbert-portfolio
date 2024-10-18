@@ -1,10 +1,11 @@
 import Image from "next/image";
-import githubIcon from "../../assets/icons/github-icon.svg";
-import linkedinIcon from "../../assets/icons/linkedin-icon.svg";
-import telegramIcon from "../../assets/icons/telegram-icon.svg";
+import githubIcon from "@/assets/social-icons/github-icon.svg";
+import linkedinIcon from "@/assets/social-icons/linkedin-icon.svg";
+import telegramIcon from "@/assets/social-icons/telegram-icon.svg";
+import { IconType } from "@/types/IconType";
 
 interface Props {
-  type: "github" | "linkedin" | "telegram";
+  type: IconType;
 }
 
 export default function Icon({ type }: Props) {

@@ -1,0 +1,19 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/constants.scss";
+
+.projects-section {
+  @include container;
+
+  margin-top: 60px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__projects-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
