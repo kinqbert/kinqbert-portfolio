@@ -34,21 +34,23 @@ export const SkillsSection = () => {
 
   return (
     <section className="skills-section">
-      <h2 className="skills-section__title">Skills</h2>
+      <div className="skills-section__container">
+        <h2 className="skills-section__title">Skills</h2>
 
-      <div className="skills-section__categories-list">
-        {technologiesCategories.map((technologiesCategory, index) => (
-          <div key={index}>
-            <h3 className="skills-section__technology-title">
-              {technologiesCategory.categoryTitle}
-            </h3>
-            <div className="skills-section__technologies-list">
-              {technologiesCategory.technologies.map((technology, index) => (
-                <TechnologyItem technology={technology} key={index} />
-              ))}
+        <div className="skills-section__categories-list">
+          {technologiesCategories.map((technologiesCategory, index) => (
+            <div key={index}>
+              <h3 className="skills-section__technology-title">
+                {technologiesCategory.categoryTitle}
+              </h3>
+              <div className="skills-section__technologies-list">
+                {technologiesCategory.technologies.map((technology, index) => (
+                  <TechnologyItem technology={technology} key={index} />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

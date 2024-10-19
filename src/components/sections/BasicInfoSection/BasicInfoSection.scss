@@ -3,10 +3,9 @@
 @import "../../../styles/constants.scss";
 
 .basic-info-section {
-  height: 120px;
   background-color: $grey-primary;
 
-  padding-inline: 24px;
+  padding: 24px 20px;
 
   display: flex;
   align-items: center;
@@ -16,7 +15,14 @@
     @include container;
     display: grid;
 
+    gap: 20px;
+    row-gap: 40px;
+
     grid-template-columns: repeat(4, 1fr);
+
+    @media screen and (max-width: $desktop-max-width) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__info-item {

@@ -3,9 +3,12 @@
 @import "../../../styles/constants.scss";
 
 .skills-section {
-  @include container;
-
   margin-top: 60px;
+  padding-inline: 20px;
+
+  &__container {
+    @include container;
+  }
 
   &__title {
     margin-bottom: 20px;
@@ -30,7 +33,19 @@
 
   &__technologies-list {
     display: grid;
-    grid-template-columns: repeat(6, 180px);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
+
+    @media screen and (max-width: $desktop-max-width) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (max-width: $tablet-max-width) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: $mobile-max-width) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
