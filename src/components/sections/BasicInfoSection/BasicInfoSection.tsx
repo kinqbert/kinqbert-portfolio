@@ -1,3 +1,5 @@
+"use client";
+
 import { getTimeStringFromMilliseconds } from "@/utils/getTimeStringFromMilliseconds";
 import "./BasicInfoSection.scss";
 
