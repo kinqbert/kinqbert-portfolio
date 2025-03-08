@@ -5,17 +5,18 @@ import {
   ProjectsSection,
 } from "@/components/sections";
 
-import "./page.scss";
 import { ContactsSection } from "@/components/sections/ContactsSection";
+import { FooterSection } from "@/components/sections/FooterSection";
 
 export default function Home() {
   return (
-    <main className="main">
+    <main>
       <HeadlineSection />
       <BasicInfoSection />
       <SkillsSection />
       <ProjectsSection />
       <ContactsSection />
+      <FooterSection />
     </main>
   );
 }

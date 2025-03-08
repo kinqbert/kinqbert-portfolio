@@ -1,0 +1,36 @@
+@import "../../../styles/colors.scss";
+
+.footerSection {
+  height: 80dvh;
+
+  background-position: bottom left 20%;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.quote {
+  opacity: 0.4;
+  color: $white-primary;
+
+  font-family: "DM Sans";
+  font-size: 14px;
+}
+
+.author {
+  opacity: 0.2;
+  color: $white-primary;
+
+  font-size: 12px;
+  font-style: italic;
+}
