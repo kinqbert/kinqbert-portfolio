@@ -9,6 +9,7 @@ import TickIcon from "@/assets/general-icons/tick-icon.svg";
 import { isValidEmail } from "@/helpers/isEmail";
 
 import styles from "./ContactTitle.module.scss";
+
 interface Props {
   title: string;
   href: string;
