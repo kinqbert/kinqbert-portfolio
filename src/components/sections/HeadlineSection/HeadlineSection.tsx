@@ -1,29 +1,29 @@
 "use client";
 
-import Link from "next/link";
-import styles from "./HeadlineSection.module.scss";
-import React, { useEffect } from "react";
-import { socials } from "@/constants/socials";
 import Image from "next/image";
-
-import TopGradient from "@/assets/gradient-backgrounds/top-gradient.png";
+import Link from "next/link";
+import React, { useEffect } from "react";
 
 import ArrowDown from "@/assets/general-icons/arrow-down.svg";
+
+import { socials } from "@/constants/socials";
+
+import styles from "./HeadlineSection.module.scss";
 
 export const HeadlineSection = () => {
   const squaresAmount = 1600;
   const squaresArray = new Array(squaresAmount);
   squaresArray.fill(<></>);
 
-  // useEffect(() => {
-  //   document.body.style.overflow = "hidden";
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
 
-  //   const timer = setTimeout(() => {
-  //     document.body.style.overflow = "auto";
-  //   }, 5000);
+    const timer = setTimeout(() => {
+      document.body.style.overflow = "auto";
+    }, 5000);
 
-  //   return () => clearTimeout(timer);
-  // }, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   const tileColorClasses = [
     "red",

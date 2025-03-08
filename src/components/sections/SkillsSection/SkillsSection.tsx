@@ -6,8 +6,9 @@ import {
   otherTechnologies,
 } from "@/constants/technologyStack";
 
-import styles from "./SkillsSection.module.scss";
 import { Technology } from "@/types/Technology";
+
+import styles from "./SkillsSection.module.scss";
 
 export const SkillsSection = () => {
   const technologiesCategories: {

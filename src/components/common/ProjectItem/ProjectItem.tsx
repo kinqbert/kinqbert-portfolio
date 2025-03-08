@@ -4,10 +4,11 @@ import Link from "next/link";
 import CodeIcon from "@/assets/general-icons/code-icon.svg";
 import DemoIcon from "@/assets/general-icons/demo-icon.svg";
 
+import { TechnologyItem } from "../TechnologyItem";
+
 import { Project } from "@/types/Project";
 
 import styles from "./ProjectItem.module.scss";
-import { TechnologyItem } from "../TechnologyItem";
 
 interface Props {
   project: Project;

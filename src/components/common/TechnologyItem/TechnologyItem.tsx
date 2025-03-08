@@ -1,6 +1,8 @@
-import { Technology } from "@/types/Technology";
-import styles from "./TechnologyItem.module.scss";
 import Image from "next/image";
+
+import { Technology } from "@/types/Technology";
+
+import styles from "./TechnologyItem.module.scss";
 
 interface Props {
   technology: Technology;

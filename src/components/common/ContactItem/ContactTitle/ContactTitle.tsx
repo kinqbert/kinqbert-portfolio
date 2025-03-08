@@ -1,14 +1,14 @@
 "use client";
 
-import { isValidEmail } from "@/helpers/isEmail";
-
-import styles from "./ContanctTitle.module.scss";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import CopyIcon from "@/assets/general-icons/copy-icon.svg";
 import TickIcon from "@/assets/general-icons/tick-icon.svg";
-import { useEffect, useState } from "react";
 
+import { isValidEmail } from "@/helpers/isEmail";
+
+import styles from "./ContanctTitle.module.scss";
 interface Props {
   title: string;
   href: string;

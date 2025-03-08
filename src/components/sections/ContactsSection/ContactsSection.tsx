@@ -1,6 +1,8 @@
-import { contacts } from "@/constants/contacts";
-import styles from "./ContactsSection.module.scss";
 import { ContactItem } from "@/components/common/ContactItem";
+
+import { contacts } from "@/constants/contacts";
+
+import styles from "./ContactsSection.module.scss";
 
 export const ContactsSection = () => {
   return (

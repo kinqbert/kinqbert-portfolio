@@ -1,11 +1,14 @@
 "use client";
 
+import { startDateString } from "@/constants/general";
+
 import { getTimeStringFromMilliseconds } from "@/utils/getTimeStringFromMilliseconds";
+
 import styles from "./BasicInfoSection.module.scss";
 
 export const BasicInfoSection = () => {
   const currentDate = new Date();
-  const startDate = new Date("2024-08-27T00:00:00+03:00");
+  const startDate = new Date(startDateString);
   const experienceTimeInMilliseconds =
     currentDate.getTime() - startDate.getTime();
   const experienceString = getTimeStringFromMilliseconds(

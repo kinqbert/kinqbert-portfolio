@@ -4,7 +4,6 @@ import {
   SkillsSection,
   ProjectsSection,
 } from "@/components/sections";
-
 import { ContactsSection } from "@/components/sections/ContactsSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 

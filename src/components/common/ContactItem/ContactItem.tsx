@@ -1,12 +1,15 @@
-import { Contact } from "@/types/Contacts";
-
-import styles from "./ContactItem.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Contact } from "@/types/Contacts";
+
 import { ContactTitle } from "./ContactTitle";
+
 import { isValidEmail } from "@/helpers/isEmail";
 
 import LinkArrowIcon from "@/assets/general-icons/link-arrow-icon.svg";
+
+import styles from "./ContactItem.module.scss";
 
 interface Props {
   contact: Contact;

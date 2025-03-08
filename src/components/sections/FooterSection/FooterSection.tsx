@@ -1,6 +1,5 @@
-import styles from "./FooterSection.module.scss";
-
 import BottomGradient from "@/assets/gradient-backgrounds/bottom-gradient.png";
+import styles from "./FooterSection.module.scss";
 
 export const FooterSection = () => {
   return (

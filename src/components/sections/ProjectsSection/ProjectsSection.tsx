@@ -1,6 +1,8 @@
-import { projects } from "@/constants/projects";
-import styles from "./ProjectsSection.module.scss";
 import { ProjectItem } from "@/components/common/ProjectItem";
+
+import { projects } from "@/constants/projects";
+
+import styles from "./ProjectsSection.module.scss";
 
 export const ProjectsSection = () => {
   return (
