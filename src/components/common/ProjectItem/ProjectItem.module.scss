@@ -28,15 +28,15 @@
 }
 
 .linkButton {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 4px;
 
-  border-radius: 6px;
+  border-radius: 4px;
 
   background-color: $ui-grey-primary-lighter;
   border: 1px solid $ui-grey-border-lighter;
@@ -46,6 +46,11 @@
   &:hover {
     background-color: $ui-grey-primary-lighter--hover;
   }
+}
+
+.linkImage {
+  width: 100%;
+  height: 100%;
 }
 
 .logoImageWrapper {

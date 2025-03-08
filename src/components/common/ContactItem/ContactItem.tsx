@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ContactTitle } from "./ContactTitle";
 import { isValidEmail } from "@/helpers/isEmail";
 
+import LinkArrowIcon from "@/assets/general-icons/link-arrow-icon.svg";
+
 interface Props {
   contact: Contact;
 }
@@ -14,7 +16,9 @@ export const ContactItem = ({ contact }: Props) => {
   const isMail = isValidEmail(contact.href);
 
   const Wrapper: React.ElementType = isMail ? "div" : Link;
-  const wrapperProps = isMail ? {} : { href: contact.href, passHref: true };
+  const wrapperProps = isMail
+    ? {}
+    : { href: contact.href, passHref: true, target: "_blank" };
 
   return (
     <Wrapper className={styles.contactItem} {...wrapperProps}>
@@ -25,6 +29,11 @@ export const ContactItem = ({ contact }: Props) => {
         <span className={styles.subtitle}>{contact.subtitle}</span>
         <ContactTitle title={contact.title} href={contact.href} />
       </div>
+      <Image
+        src={LinkArrowIcon}
+        className={styles.diagonalArrow}
+        alt="Link arrow"
+      />
     </Wrapper>
   );
 };

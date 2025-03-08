@@ -30,14 +30,22 @@ export const ProjectItem = ({ project }: Props) => {
             className={styles.linkButton}
             target="_blank"
           >
-            <Image src={DemoIcon} alt="Demo link icon" />
+            <Image
+              className={styles.linkImage}
+              src={DemoIcon}
+              alt="Demo link icon"
+            />
           </Link>
           <Link
             href={project.repoHref}
             className={styles.linkButton}
             target="_blank"
           >
-            <Image src={CodeIcon} alt="Code link icon" />
+            <Image
+              className={styles.linkImage}
+              src={CodeIcon}
+              alt="Code link icon"
+            />
           </Link>
         </div>
       </div>

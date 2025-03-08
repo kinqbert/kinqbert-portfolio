@@ -15,15 +15,15 @@ export const HeadlineSection = () => {
   const squaresArray = new Array(squaresAmount);
   squaresArray.fill(<></>);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  // useEffect(() => {
+  //   document.body.style.overflow = "hidden";
 
-    const timer = setTimeout(() => {
-      document.body.style.overflow = "auto";
-    }, 5000);
+  //   const timer = setTimeout(() => {
+  //     document.body.style.overflow = "auto";
+  //   }, 5000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const tileColorClasses = [
     "red",
