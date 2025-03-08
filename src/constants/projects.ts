@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     name: "Nice Gadgets Store",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.",
+      "Sleek and user-friendly shop for browsing mobile phones and other devices. It features a clean interface with search, filter, and sorting options, providing detailed phone specifications and images.",
     demoHref: "https://fs-mar24-kyrylos-witnesses.github.io/phone-catalog/",
     repoHref: "https://github.com/fs-mar24-kyrylos-witnesses/phone-catalog",
     logoSvgSrc: NiceGadgetsLogo,
@@ -32,7 +32,7 @@ export const projects: Project[] = [
   {
     name: "ToDo Application",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.",
+      "Task management tool built with React and TypeScript, using local storage for persistence. It allows adding, deleting, and modifying tasks, with filtering options to view all, active, or completed assignments..",
     demoHref: "https://kinqbert.github.io/react_todo-app/",
     repoHref: "https://github.com/kinqbert/react_todo-app",
     logoSvgSrc: TodoLogo,
@@ -46,7 +46,7 @@ export const projects: Project[] = [
   {
     name: "MyBike Landing",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.",
+      "Responsive static website designed to highlight bicycles and related accessories. It features a modern user interface with smooth animations, built using HTML and SCSS. The site serves as an excellent template for bike-related businesses or product showcases.",
     demoHref: "https://kinqbert.github.io/my-bike-landing/",
     repoHref: "https://github.com/kinqbert/my-bike-landing",
     logoSvgSrc: MyBikeLogo,

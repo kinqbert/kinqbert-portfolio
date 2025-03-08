@@ -50,7 +50,7 @@ export const HeadlineSection = () => {
         <h1 className={styles.headline}>Hello there</h1>
         <p className={styles.subtext}>
           My name is Maksym Perekhodko,
-          <br></br>
+          <br />
           I&apos;m a <u>Full-stack engineer</u>.
         </p>
       </div>
