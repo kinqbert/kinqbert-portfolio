@@ -1,6 +1,6 @@
 @import "../../../styles/colors.scss";
 
-$gradient-border-width: 2px;
+$gradient-border-width: 3px;
 
 @property --spin-angle {
   syntax: "<angle>";
@@ -8,23 +8,18 @@ $gradient-border-width: 2px;
   inherits: false;
 }
 
-.project-item {
-  width: 100%;
-  min-height: 230px;
-
+.contactItem {
   padding: 20px;
-
-  border-radius: 6px;
+  border-radius: 10px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 16px;
 
-  cursor: pointer;
-
-  background-color: $white-primary--transparent-visible;
+  border: 1px solid $ui-grey-border;
+  background-color: $ui-grey-primary;
 
   position: relative;
+  box-sizing: border-box;
 
   &:hover {
     &::after {
@@ -50,7 +45,7 @@ $gradient-border-width: 2px;
 
     position: absolute;
 
-    border-radius: 8px;
+    border-radius: 12px;
 
     background-image: conic-gradient(
       from var(--spin-angle),
@@ -84,29 +79,29 @@ $gradient-border-width: 2px;
 
     transition: opacity 0.3s;
   }
+}
 
-  &__logo-image-wrapper {
-    height: 40px;
-    width: 100%;
-  }
+.imageWrapper {
+  width: 60px;
+  height: 60px;
 
-  &__logo-image {
-    object-position: left;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &__project-name {
-    margin-bottom: 10px;
+  border-radius: 5px;
 
-    opacity: 0.8;
+  background-color: $ui-grey-primary-lighter;
+}
 
-    font-size: 24px;
-    font-weight: 700;
-  }
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
 
-  &__project-description {
-    color: $grey-dark;
-
-    font-size: 15px;
-    font-weight: 400;
-  }
+.subtitle {
+  opacity: 0.3;
+  font-size: 12px;
 }

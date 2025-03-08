@@ -1,0 +1,23 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/constants.scss";
+
+.projectsSection {
+  margin-top: 60px;
+  padding-inline: 20px;
+}
+
+.container {
+  @include container;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.projectsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-rows: 1fr;
+  gap: 20px;
+}

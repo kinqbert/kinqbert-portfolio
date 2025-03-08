@@ -1,7 +1,10 @@
+import { Technology } from "./Technology";
+
 export interface Project {
   logoSvgSrc: string;
   name: string;
   description: string;
-  repoUrl: string;
-  demoUrl: string;
+  repoHref: string;
+  demoHref: string;
+  technologiesUsed: Technology[];
 }

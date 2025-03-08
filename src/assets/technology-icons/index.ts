@@ -1,6 +1,8 @@
+import IconBulma from "./bulma.png";
 import IconCPP from "./cpp.png";
 import IconCS from "./cs.png";
 import IconCSS from "./css.png";
+import IconSCSS from "./scss.png";
 import IconDocker from "./docker.png";
 import IconExpressJS from "./expressjs.png";
 import IconFigma from "./figma.png";
@@ -20,9 +22,11 @@ import IconVite from "./vite.png";
 import IconZustand from "./zustand.png";
 
 export {
+  IconBulma,
   IconCPP,
   IconCS,
   IconCSS,
+  IconSCSS,
   IconDocker,
   IconExpressJS,
   IconFigma,

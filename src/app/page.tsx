@@ -6,6 +6,7 @@ import {
 } from "@/components/sections";
 
 import "./page.scss";
+import { ContactsSection } from "@/components/sections/ContactsSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <BasicInfoSection />
       <SkillsSection />
       <ProjectsSection />
+      <ContactsSection />
     </main>
   );
 }

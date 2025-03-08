@@ -1,7 +1,7 @@
 "use client";
 
 import { getTimeStringFromMilliseconds } from "@/utils/getTimeStringFromMilliseconds";
-import "./BasicInfoSection.scss";
+import styles from "./BasicInfoSection.module.scss";
 
 export const BasicInfoSection = () => {
   const currentDate = new Date();
@@ -32,19 +32,15 @@ export const BasicInfoSection = () => {
   ];
 
   return (
-    <section className="basic-info-section">
-      <div className="basic-info-section__content">
+    <section className={styles.basicInfoSection}>
+      <ul className={styles.content}>
         {infoItems.map((infoItem, index) => (
-          <div className="basic-info-section__info-item" key={index}>
-            <span className="basic-info-section__info-item-title">
-              {infoItem.title}
-            </span>
-            <span className="basic-info-section__info-item-value">
-              {infoItem.value}
-            </span>
-          </div>
+          <li className={styles.infoItem} key={index}>
+            <span className={styles.infoItemTitle}>{infoItem.title}</span>
+            <span className={styles.infoItemValue}>{infoItem.value}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };

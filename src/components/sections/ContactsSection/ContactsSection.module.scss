@@ -1,0 +1,27 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/constants.scss";
+
+.contactsSection {
+  margin-top: 60px;
+  padding-inline: 20px;
+}
+
+.container {
+  @include container;
+}
+
+.subtitle {
+  margin-top: 20px;
+
+  color: $white-primary;
+  opacity: 0.3;
+}
+
+.contactsList {
+  margin-top: 20px;
+
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}

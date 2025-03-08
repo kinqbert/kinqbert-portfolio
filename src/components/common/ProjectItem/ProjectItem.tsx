@@ -1,7 +1,13 @@
-import { Project } from "@/types/Project";
 import Image from "next/image";
+import Link from "next/link";
 
-import "./ProjectItem.scss";
+import CodeIcon from "@/assets/general-icons/code-icon.svg";
+import DemoIcon from "@/assets/general-icons/demo-icon.svg";
+
+import { Project } from "@/types/Project";
+
+import styles from "./ProjectItem.module.scss";
+import { TechnologyItem } from "../TechnologyItem";
 
 interface Props {
   project: Project;
@@ -9,19 +15,44 @@ interface Props {
 
 export const ProjectItem = ({ project }: Props) => {
   return (
-    <div className="project-item">
-      <div className="project-item__logo-image-wrapper">
-        <Image
-          className="project-item__logo-image"
-          src={project.logoSvgSrc}
-          alt="Project image"
-        />
+    <div className={styles.projectItem}>
+      <div className={styles.headerWrapper}>
+        <div className={styles.logoImageWrapper}>
+          <Image
+            className={styles.logoImage}
+            src={project.logoSvgSrc}
+            alt="Project image"
+          />
+        </div>
+        <div className={styles.linkButtons}>
+          <Link
+            href={project.demoHref}
+            className={styles.linkButton}
+            target="_blank"
+          >
+            <Image src={DemoIcon} alt="Demo link icon" />
+          </Link>
+          <Link
+            href={project.repoHref}
+            className={styles.linkButton}
+            target="_blank"
+          >
+            <Image src={CodeIcon} alt="Code link icon" />
+          </Link>
+        </div>
       </div>
-      <div className="project-item__text-content">
-        <h4 className="project-item__project-name">{project.name}</h4>
-        <p className="project-item__project-description">
-          {project.description}
-        </p>
+      <div>
+        <h4 className={styles.projectName}>{project.name}</h4>
+        <p className={styles.projectDescription}>{project.description}</p>
+      </div>
+      <div className={styles.technologiesList}>
+        {project.technologiesUsed.map((technology) => (
+          <TechnologyItem
+            key={technology.title}
+            technology={technology}
+            variant="small"
+          />
+        ))}
       </div>
     </div>
   );

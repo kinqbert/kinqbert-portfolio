@@ -1,17 +1,17 @@
 import { projects } from "@/constants/projects";
-import "./ProjectsSection.scss";
+import styles from "./ProjectsSection.module.scss";
 import { ProjectItem } from "@/components/common/ProjectItem";
 
 export const ProjectsSection = () => {
   return (
-    <section className="projects-section">
-      <div className="projects-section__container">
-        <h2 className="projects-section__title">Projects</h2>
-        <div className="projects-section__projects-list">
+    <section className={styles.projectsSection}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Projects</h2>
+        <ul className={styles.projectsList}>
           {projects.map((project, index) => (
             <ProjectItem project={project} key={index} />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import {
   otherTechnologies,
 } from "@/constants/technologyStack";
 
-import "./SkillsSection.scss";
+import styles from "./SkillsSection.module.scss";
 import { Technology } from "@/types/Technology";
 
 export const SkillsSection = () => {
@@ -33,24 +33,24 @@ export const SkillsSection = () => {
   ];
 
   return (
-    <section className="skills-section">
-      <div className="skills-section__container">
-        <h2 className="skills-section__title">Skills</h2>
+    <section className={styles.skillsSection}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Skills</h2>
 
-        <div className="skills-section__categories-list">
+        <ul className={styles.categoriesList}>
           {technologiesCategories.map((technologiesCategory, index) => (
             <div key={index}>
-              <h3 className="skills-section__technology-title">
+              <h3 className={styles.technologyTitle}>
                 {technologiesCategory.categoryTitle}
               </h3>
-              <div className="skills-section__technologies-list">
+              <div className={styles.technologiesList}>
                 {technologiesCategory.technologies.map((technology, index) => (
                   <TechnologyItem technology={technology} key={index} />
                 ))}
               </div>
             </div>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
