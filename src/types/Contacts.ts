@@ -5,4 +5,5 @@ export interface Contact {
   subtitle: string;
   href: string;
   imageSrc: StaticImageData;
+  isAbleToCopy?: boolean;
 }

@@ -9,7 +9,7 @@ export const contacts: Contact[] = [
   {
     title: "@perekhodko_m",
     subtitle: "Telegram",
-    href: "https://www.youtube.com/",
+    href: "https://t.me/perekhodko_m",
     imageSrc: TelegramContactIcon,
   },
   {
@@ -27,7 +27,8 @@ export const contacts: Contact[] = [
   {
     title: "perekhodko.maksym@gmail.com",
     subtitle: "Email",
-    href: "https://www.youtube.com/",
+    href: "perekhodko.maksym@gmail.com",
     imageSrc: EmailContactIcon,
+    isAbleToCopy: true,
   },
 ];

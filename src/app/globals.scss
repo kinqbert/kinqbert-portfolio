@@ -10,3 +10,11 @@ body {
   color: $white-primary;
   background-color: $page-background;
 }
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
+}

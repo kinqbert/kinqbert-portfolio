@@ -1,5 +1,9 @@
 @import "../../../styles/colors.scss";
 
+$headline-animation-delay: 1s;
+$subtext-animation-delay: 3s;
+$bg-animation-delay: 5s;
+
 .headlineSection {
   display: flex;
   flex-direction: column;
@@ -12,10 +16,13 @@
   perspective: 1800px;
 
   overflow: hidden;
+
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 
 .content {
-  height: 85vh;
+  height: 88vh;
 
   display: flex;
   flex-direction: column;
@@ -35,6 +42,9 @@
   display: flex;
   gap: 14px;
   align-items: center;
+
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out $bg-animation-delay forwards;
 }
 
 .socialsLink {
@@ -55,10 +65,24 @@
   opacity: 0.5;
 }
 
+.headline {
+  opacity: 0;
+
+  animation: fadeIn 1s ease-in-out $headline-animation-delay forwards;
+}
+
 .subtext {
   margin-top: 2px;
 
   color: $grey-secondary;
+
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out $subtext-animation-delay forwards;
+}
+
+.arrowDown {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out $bg-animation-delay forwards;
 }
 
 .background {
@@ -78,7 +102,10 @@
 
   transform: rotateX(50deg) rotateY(-5deg) rotateZ(20deg) scale(1.2);
 
-  z-index: -1;
+  z-index: -2;
+
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out $bg-animation-delay forwards;
 
   &::after {
     content: "";
@@ -135,5 +162,14 @@
     &:hover {
       background-color: $tile__bg--purple;
     }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
