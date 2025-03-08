@@ -4,6 +4,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+
+  width: 100%;
+
+  & span {
+    word-break: break-all;
+    white-space: pre-wrap;
+    -moz-white-space: pre-wrap;
+  }
 }
 
 .copyButton {

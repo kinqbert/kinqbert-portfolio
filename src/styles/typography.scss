@@ -2,12 +2,20 @@ h1 {
   font-family: "DM Sans";
   font-size: 64px;
   font-weight: 700;
+
+  @media screen and (max-width: 600px) {
+    font-size: 52px;
+  }
 }
 
 h2 {
   font-family: "DM Sans";
   font-size: 36px;
   font-weight: 600;
+
+  @media screen and (max-width: 600px) {
+    font-size: 24px;
+  }
 }
 
 p,

@@ -19,7 +19,7 @@ export const contacts: Contact[] = [
     imageSrc: CvContactIcon,
   },
   {
-    title: "/maksym-perekhodko",
+    title: "Maksym Perekhodko",
     subtitle: "LinkedIn",
     href: "https://www.linkedin.com/in/maksym-perekhodko/",
     imageSrc: LinkedInContactIcon,

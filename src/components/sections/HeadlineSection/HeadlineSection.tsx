@@ -1,29 +1,18 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 import ArrowDown from "@/assets/general-icons/arrow-down.svg";
 
 import { socials } from "@/constants/socials";
 
 import styles from "./HeadlineSection.module.scss";
+import { ScrollLockEffect } from "./ScrollLockEffect/ScrollLockEffect";
 
 export const HeadlineSection = () => {
   const squaresAmount = 1600;
   const squaresArray = new Array(squaresAmount);
   squaresArray.fill(<></>);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    const timer = setTimeout(() => {
-      document.body.style.overflow = "auto";
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const tileColorClasses = [
     "red",
@@ -36,6 +25,7 @@ export const HeadlineSection = () => {
 
   return (
     <section className={styles.headlineSection}>
+      <ScrollLockEffect />
       <ul className={styles.socials}>
         {socials.map((socialItem, index) => (
           <React.Fragment key={index}>
