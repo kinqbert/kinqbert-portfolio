@@ -3,6 +3,7 @@ import IconCPP from "./cpp.png";
 import IconCS from "./cs.png";
 import IconCSS from "./css.png";
 import IconSCSS from "./scss.png";
+import IconChakra from './chakra.png'
 import IconDocker from "./docker.png";
 import IconExpressJS from "./expressjs.png";
 import IconFigma from "./figma.png";
@@ -27,6 +28,7 @@ export {
   IconCS,
   IconCSS,
   IconSCSS,
+  IconChakra,
   IconDocker,
   IconExpressJS,
   IconFigma,

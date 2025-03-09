@@ -1,5 +1,6 @@
 import {
   IconBulma,
+  IconChakra,
   IconCPP,
   IconCS,
   IconCSS,
@@ -35,14 +36,19 @@ export const CSSTechnology: Technology = {
   imageSrc: IconCSS,
 };
 
-export const BulmaTechnology: Technology = {
-  title: "Bulma",
-  imageSrc: IconBulma,
-};
-
 export const SCSSTechnology: Technology = {
   title: "SCSS",
   imageSrc: IconSCSS,
+};
+
+export const ChakraTechnology: Technology = {
+  title: "Chakra UI",
+  imageSrc: IconChakra,
+};
+
+export const BulmaTechnology: Technology = {
+  title: "Bulma",
+  imageSrc: IconBulma,
 };
 
 export const JavaScriptTechnology: Technology = {
@@ -147,6 +153,7 @@ export const frontEndTechnologies: Technology[] = [
   TypeScriptTechnology,
   ReactTechnology,
   NextJSTechnology,
+  ChakraTechnology,
   ZustandTechnology,
   ViteTechnology,
 ];
