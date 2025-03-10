@@ -32,7 +32,7 @@ export const ContactItem = ({ contact }: Props) => {
         <span className={styles.subtitle}>{contact.subtitle}</span>
         <ContactTitle title={contact.title} href={contact.href} />
       </div>
-      {isMail && (
+      {!isMail && (
         <Image
           src={LinkArrowIcon}
           className={styles.diagonalArrow}
