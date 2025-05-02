@@ -17,10 +17,13 @@ export const TechnologyItem = ({ technology, variant = "large" }: Props) => {
   const handleMouseEnter = () => {
     if (variant === "small") return;
 
-    const min = -5;
-    const max = 5;
-    const angle = Math.floor(Math.random() * (max - min + 1)) + min;
-    setRotate(angle);
+    const rand = Math.round(Math.random());
+
+    if (rand === 0) {
+      setRotate(-3);
+    } else {
+      setRotate(3);
+    }
   };
 
   const handleMouseLeave = () => {
