@@ -4,7 +4,6 @@ import MyBikeLogo from "@/assets/project-icons/mybike-logo.svg";
 import NiceGadgetsLogo from "@/assets/project-icons/nice-gadgets-logo.svg";
 import TodoLogo from "@/assets/project-icons/todo-logo.svg";
 import {
-  BulmaTechnology,
   HTMLTechnology,
   ReactTechnology,
   SCSSTechnology,
@@ -36,12 +35,7 @@ export const projects: Project[] = [
     demoHref: "https://kinqbert.github.io/react_todo-app/",
     repoHref: "https://github.com/kinqbert/react_todo-app",
     logoSvgSrc: TodoLogo,
-    technologiesUsed: [
-      ReactTechnology,
-      SCSSTechnology,
-      TypeScriptTechnology,
-      BulmaTechnology,
-    ],
+    technologiesUsed: [ReactTechnology, SCSSTechnology, TypeScriptTechnology],
   },
   {
     name: "MyBike Landing",

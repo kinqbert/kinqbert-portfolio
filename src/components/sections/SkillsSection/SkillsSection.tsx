@@ -3,7 +3,6 @@ import {
   frontEndTechnologies,
   backEndTechnologies,
   toolsTechnologies,
-  otherTechnologies,
 } from "@/constants/technologyStack";
 
 import { Technology } from "@/types/Technology";
@@ -26,10 +25,6 @@ export const SkillsSection = () => {
     {
       categoryTitle: "Tools",
       technologies: toolsTechnologies,
-    },
-    {
-      categoryTitle: "Other",
-      technologies: otherTechnologies,
     },
   ];
 

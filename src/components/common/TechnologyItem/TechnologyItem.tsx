@@ -41,11 +41,13 @@ export const TechnologyItem = ({ technology, variant = "large" }: Props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Image
-        className={`${styles.image} ${styles[`image--${variant}`]}`}
-        src={technology.imageSrc}
-        alt={`${technology.title} image`}
-      />
+      {technology.imageSrc && (
+        <Image
+          className={`${styles.image} ${styles[`image--${variant}`]}`}
+          src={technology.imageSrc}
+          alt={`${technology.title} image`}
+        />
+      )}
       <span className={`${styles.title} ${styles[`title--${variant}`]}`}>
         {technology.title}
       </span>

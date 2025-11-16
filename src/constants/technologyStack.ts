@@ -1,24 +1,26 @@
 import {
-  IconBulma,
   IconChakra,
-  IconCPP,
-  IconCS,
   IconCSS,
   IconDocker,
+  IconDrizzle,
   IconExpressJS,
   IconFigma,
   IconGit,
   IconHTML,
   IconJavaScript,
+  IconJWT,
   IconMongoDB,
+  IconNestJS,
   IconNextJS,
   IconNodeJS,
   IconNpm,
-  IconPhotoshop,
   IconPostgreSQL,
+  IconPrisma,
   IconReact,
+  IconRedis,
   IconSCSS,
   IconSequelize,
+  IconSocketIO,
   IconTypeScript,
   IconVite,
   IconZustand,
@@ -39,16 +41,6 @@ export const CSSTechnology: Technology = {
 export const SCSSTechnology: Technology = {
   title: "SCSS",
   imageSrc: IconSCSS,
-};
-
-export const ChakraTechnology: Technology = {
-  title: "Chakra UI",
-  imageSrc: IconChakra,
-};
-
-export const BulmaTechnology: Technology = {
-  title: "Bulma",
-  imageSrc: IconBulma,
 };
 
 export const JavaScriptTechnology: Technology = {
@@ -81,7 +73,21 @@ export const ViteTechnology: Technology = {
   imageSrc: IconVite,
 };
 
-// Back-End Technologies
+export const BootstrapTechnology: Technology = {
+  title: "Bootstrap",
+  imageSrc: null,
+};
+
+export const BEMTechnology: Technology = {
+  title: "BEM",
+  imageSrc: null,
+};
+
+export const RestAPITechnology: Technology = {
+  title: "REST API",
+  imageSrc: null,
+};
+
 export const NodeJSTechnology: Technology = {
   title: "Node.js",
   imageSrc: IconNodeJS,
@@ -92,14 +98,9 @@ export const ExpressJSTechnology: Technology = {
   imageSrc: IconExpressJS,
 };
 
-export const PostgreSQLTechnology: Technology = {
-  title: "PostgreSQL",
-  imageSrc: IconPostgreSQL,
-};
-
-export const SequelizeTechnology: Technology = {
-  title: "Sequelize",
-  imageSrc: IconSequelize,
+export const NestJSTechnology: Technology = {
+  title: "Nest.js",
+  imageSrc: IconNestJS,
 };
 
 export const MongoDBTechnology: Technology = {
@@ -107,9 +108,53 @@ export const MongoDBTechnology: Technology = {
   imageSrc: IconMongoDB,
 };
 
-// Tools Technologies
+export const PostgreSQLTechnology: Technology = {
+  title: "PostgreSQL",
+  imageSrc: IconPostgreSQL,
+};
+
+export const RedisTechnology: Technology = {
+  title: "Redis",
+  imageSrc: IconRedis,
+};
+
+export const PrismaTechnology: Technology = {
+  title: "Prisma",
+  imageSrc: IconPrisma,
+};
+
+export const DrizzleTechnology: Technology = {
+  title: "Drizzle",
+  imageSrc: IconDrizzle,
+};
+
+export const SequelizeTechnology: Technology = {
+  title: "Sequelize",
+  imageSrc: IconSequelize,
+};
+
+export const SocketIOTechnology: Technology = {
+  title: "Socket.IO",
+  imageSrc: IconSocketIO,
+};
+
+export const JWTTechnology: Technology = {
+  title: "JWT",
+  imageSrc: IconJWT,
+};
+
+export const OAuthTechnology: Technology = {
+  title: "OAuth",
+  imageSrc: null,
+};
+
+export const RBACTechnology: Technology = {
+  title: "RBAC",
+  imageSrc: null,
+};
+
 export const GitTechnology: Technology = {
-  title: "git",
+  title: "Git",
   imageSrc: IconGit,
 };
 
@@ -128,23 +173,26 @@ export const DockerTechnology: Technology = {
   imageSrc: IconDocker,
 };
 
-export const PhotoshopTechnology: Technology = {
-  title: "Photoshop",
-  imageSrc: IconPhotoshop,
+export const VSCodeTechnology: Technology = {
+  title: "VS Code",
+  imageSrc: null,
 };
 
-// Other Technologies
-export const CPPTechnology: Technology = {
-  title: "C++",
-  imageSrc: IconCPP,
+export const GitHubActionsTechnology: Technology = {
+  title: "GitHub Actions",
+  imageSrc: null,
 };
 
-export const CSTechnology: Technology = {
-  title: "C#",
-  imageSrc: IconCS,
+export const GitLabCITechnology: Technology = {
+  title: "GitLab CI",
+  imageSrc: null,
 };
 
-// Arrays of Technologies
+export const JMeterTechnology: Technology = {
+  title: "JMeter",
+  imageSrc: null,
+};
+
 export const frontEndTechnologies: Technology[] = [
   HTMLTechnology,
   CSSTechnology,
@@ -153,17 +201,27 @@ export const frontEndTechnologies: Technology[] = [
   TypeScriptTechnology,
   ReactTechnology,
   NextJSTechnology,
-  ChakraTechnology,
   ZustandTechnology,
   ViteTechnology,
+  BootstrapTechnology,
+  BEMTechnology,
+  RestAPITechnology,
 ];
 
 export const backEndTechnologies: Technology[] = [
   NodeJSTechnology,
   ExpressJSTechnology,
-  PostgreSQLTechnology,
-  SequelizeTechnology,
+  NestJSTechnology,
   MongoDBTechnology,
+  PostgreSQLTechnology,
+  RedisTechnology,
+  PrismaTechnology,
+  DrizzleTechnology,
+  SequelizeTechnology,
+  SocketIOTechnology,
+  JWTTechnology,
+  OAuthTechnology,
+  RBACTechnology,
 ];
 
 export const toolsTechnologies: Technology[] = [
@@ -171,7 +229,8 @@ export const toolsTechnologies: Technology[] = [
   NpmTechnology,
   FigmaTechnology,
   DockerTechnology,
-  PhotoshopTechnology,
+  VSCodeTechnology,
+  GitHubActionsTechnology,
+  GitLabCITechnology,
+  JMeterTechnology,
 ];
-
-export const otherTechnologies: Technology[] = [CPPTechnology, CSTechnology];
