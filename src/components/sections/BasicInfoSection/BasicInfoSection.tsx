@@ -30,7 +30,7 @@ export const BasicInfoSection = () => {
     },
     {
       title: "Primary technologies",
-      value: "React / Next.js / Node.js",
+      value: "React / Node.js",
     },
   ];
 
