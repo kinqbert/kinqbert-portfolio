@@ -3,6 +3,7 @@ $muted: #9b9b96;
 $line: rgba(255, 255, 255, 0.11);
 $focus: #deded9;
 $panel: #101113;
+$section-space: clamp(64px, 5vw, 100px);
 
 .page {
   --gutter: clamp(20px, 4vw, 64px);
@@ -280,7 +281,7 @@ $panel: #101113;
 
 }
 
-.section { padding: clamp(100px, 13vw, 200px) var(--gutter) 0; }
+.section { padding: $section-space var(--gutter) 0; }
 
 .sectionHeading {
   margin-bottom: clamp(52px, 7vw, 96px);
@@ -542,7 +543,7 @@ $panel: #101113;
   > span { position: absolute; inset: 12% 9%; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; }
 }
 
-.experience { padding-bottom: clamp(100px, 13vw, 180px); }
+.experience { padding-bottom: $section-space; }
 
 .experienceGrid {
   display: grid;
@@ -624,7 +625,7 @@ $panel: #101113;
 }
 
 .stackSection {
-  padding-block: clamp(100px, 13vw, 180px);
+  padding-block: $section-space;
   background: #0c0d0e;
 }
 
@@ -651,11 +652,10 @@ $panel: #101113;
 }
 
 .education {
-  padding: clamp(90px, 10vw, 150px) var(--gutter);
+  padding: $section-space var(--gutter);
   display: grid;
   grid-template-columns: 0.42fr 1fr 1fr;
   gap: 44px;
-  border-top: 1px solid $line;
 
   > div { padding-top: 18px; border-top: 1px solid $line; }
   > div span { color: #656663; font-family: ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -664,7 +664,7 @@ $panel: #101113;
 }
 
 .contact {
-  padding: clamp(100px, 12vw, 180px) var(--gutter) 60px;
+  padding: $section-space var(--gutter) 60px;
   background: $focus;
   color: #0a0b0b;
 
