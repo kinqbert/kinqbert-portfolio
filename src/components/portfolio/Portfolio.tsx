@@ -175,7 +175,6 @@ export function Portfolio() {
             onFocus={() => talkText.current?.play()}
           >
             <ScrambleText ref={talkText}>LET&apos;S TALK</ScrambleText>
-            <ArrowIcon />
           </a>
         </div>
       </header>
@@ -376,7 +375,7 @@ export function Portfolio() {
               <p>Sombra</p>
               <time>Dec 2025 — Jun 2026</time>
             </div>
-            <h3>Full-stack engineer</h3>
+            <h3>Software engineer</h3>
             <ul>
               <li>Built a canvas-based FinTech platform for interactive financial modeling.</li>
               <li>Implemented Entra ID authentication and role-based access control.</li>
