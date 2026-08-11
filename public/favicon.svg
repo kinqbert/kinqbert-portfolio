@@ -1,0 +1,8 @@
+<svg width="178" height="178" viewBox="0 0 178 178" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="89" cy="89" r="89" fill="#08090A"/>
+  <g transform="translate(18 45) scale(0.8)">
+    <path d="M19 95V18H39L62 64L84 18H104V95H84V53L68 86H56L39 53V95H19Z" fill="#F3F1EB"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M110 95V18H141C157 18 168 28 168 42C168 57 157 67 141 67H130V95H110ZM130 34V51H141C146 51 149 48 149 42.5C149 37 146 34 141 34H130Z" fill="#F3F1EB"/>
+    <circle cx="167" cy="87" r="9" fill="#F3F1EB"/>
+  </g>
+</svg>

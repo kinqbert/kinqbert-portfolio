@@ -1,21 +1,5 @@
-import {
-  HeadlineSection,
-  BasicInfoSection,
-  SkillsSection,
-  ProjectsSection,
-  ContactsSection,
-  FooterSection,
-} from "@/components/sections";
+import { Portfolio } from "@/components/portfolio/Portfolio";
 
 export default function Home() {
-  return (
-    <main>
-      <HeadlineSection />
-      <BasicInfoSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactsSection />
-      <FooterSection />
-    </main>
-  );
+  return <Portfolio />;
 }

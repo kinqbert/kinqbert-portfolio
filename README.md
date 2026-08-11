@@ -1,16 +1,23 @@
-# Portfolio website
+# Maksym Perekhodko — Portfolio
 
-Welcome! This is my first Next.js application that also serves as my portfolio website. It is a simple website that showcases my skills, projects and provides a way to contact me.
+A modern, motion-led portfolio for a full-stack engineer. The site presents selected projects, commercial experience, technical capabilities, education, and contact links in a responsive single-page experience.
 
-Website is live and can be found [here](https://kinqbert.dev/).
+The production site is available at [kinqbert.dev](https://kinqbert.dev/).
 
-Design was made by me and implemented using Next.js, TypeScript, SCSS and Vite.
+## Technology
 
-## Technologies
-
-- React
+- Next.js 14 and React 18
 - TypeScript
-- Vite
-- SCSS
-- Axios
-- [react-spinners](https://www.npmjs.com/package/react-spinners)
+- Anime.js 4 for scoped motion and reveal timelines
+- React Bits Dither background and local interaction components
+- Three.js, React Three Fiber, and postprocessing for the WebGL background
+- SCSS modules
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Use `npm run lint`, `npx tsc --noEmit`, and `npm run build` before shipping changes.

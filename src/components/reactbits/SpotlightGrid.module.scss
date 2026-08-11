@@ -1,0 +1,30 @@
+.grid {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      430px circle at var(--grid-mouse-x) var(--grid-mouse-y),
+      rgba(255, 255, 255, 0.12),
+      transparent 62%
+    );
+    mix-blend-mode: screen;
+    transition: opacity 220ms ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .grid::after {
+    display: none;
+  }
+}

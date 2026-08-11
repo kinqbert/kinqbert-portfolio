@@ -1,4 +1,11 @@
 @font-face {
   font-family: "DM Sans";
   src: url("/fonts/DMSans-VariableFont.ttf") format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Italic-VariableFont.ttf") format('truetype');
+  font-style: italic;
 }
