@@ -67,7 +67,12 @@ const CodeIcon = () => (
 
 function ProjectLink({ href, children }: { href: string; children: string }) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className={styles.projectLink}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={styles.projectLink}
+    >
       {children === "Source" ? <CodeIcon /> : <ArrowIcon />}
       {children}
     </a>
@@ -101,7 +106,10 @@ export function Portfolio() {
   };
 
   useEffect(() => {
-    if (!root.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      !root.current ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       return;
     }
 
@@ -122,7 +130,8 @@ export function Portfolio() {
         ease: "inOutSine",
       });
 
-      const revealElements = root.current?.querySelectorAll<HTMLElement>("[data-reveal]");
+      const revealElements =
+        root.current?.querySelectorAll<HTMLElement>("[data-reveal]");
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -137,7 +146,7 @@ export function Portfolio() {
             observer.unobserve(entry.target);
           });
         },
-        { threshold: 0.14 }
+        { threshold: 0.14 },
       );
 
       revealElements?.forEach((element) => observer.observe(element));
@@ -197,14 +206,23 @@ export function Portfolio() {
             <p className={styles.eyebrow} data-hero-reveal>
               <span data-pulse /> Full-stack engineer · Ukraine
             </p>
-            <h1 className={styles.heroTitle} aria-label="I build digital systems that hold up">
+            <h1
+              className={styles.heroTitle}
+              aria-label="I build digital systems that hold up"
+            >
               <span data-hero-reveal>I build digital</span>
-              <span data-hero-reveal className={styles.outlineText}>systems that</span>
+              <span data-hero-reveal className={styles.outlineText}>
+                systems that
+              </span>
               <span data-hero-reveal>hold up.</span>
             </h1>
             <div className={styles.heroBottom} data-hero-reveal>
               <p>
-                My name is <WaveScrambleText className={styles.animatedName}>Maksym Perekhodko</WaveScrambleText>. I&apos;m a full-stack engineer.
+                My name is{" "}
+                <WaveScrambleText className={styles.animatedName}>
+                  Maksym Perekhodko
+                </WaveScrambleText>
+                . I&apos;m a full-stack engineer.
               </p>
               <div className={styles.heroActions}>
                 <a
@@ -220,24 +238,45 @@ export function Portfolio() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
-      <section className={styles.metrics} aria-label="Career highlights" data-reveal>
-        <div><span>Current position</span><strong>Full-stack</strong></div>
-        <div><span>Commercial experience</span><strong>2+ years</strong></div>
-        <div><span>Personal projects</span><strong>3 projects</strong></div>
-        <div><span>Primary technologies</span><strong>React / Node</strong></div>
+      <section
+        className={styles.metrics}
+        aria-label="Career highlights"
+        data-reveal
+      >
+        <div>
+          <span>Current position</span>
+          <strong>Full-stack</strong>
+        </div>
+        <div>
+          <span>Commercial experience</span>
+          <strong>2+ years</strong>
+        </div>
+        <div>
+          <span>Personal projects</span>
+          <strong>3 projects</strong>
+        </div>
+        <div>
+          <span>Primary technologies</span>
+          <strong>React / Node</strong>
+        </div>
       </section>
 
       <section className={styles.section} id="work">
         <div className={styles.sectionHeading} data-reveal>
           <p className={styles.kicker}>Projects / selected work</p>
-          <h2>Built for real use,<br /><span>not just the screenshot.</span></h2>
+          <h2>
+            Built for real use,
+            <br />
+            <span>not just the screenshot.</span>
+          </h2>
         </div>
 
-        <SpotlightCard className={`${styles.project} ${styles.projectFeatured}`}>
+        <SpotlightCard
+          className={`${styles.project} ${styles.projectFeatured}`}
+        >
           <div className={styles.projectCopy} data-reveal>
             <div className={styles.projectTopline}>
               <span>01 / Featured project</span>
@@ -246,30 +285,61 @@ export function Portfolio() {
             <div>
               <h3>Syncr</h3>
               <p>
-                A team collaboration workspace unifying Kanban tasks, dashboards,
-                calendars, real-time chat, notifications, and role-based teams.
+                A team collaboration workspace unifying Kanban tasks,
+                dashboards, calendars, real-time chat, notifications, and
+                role-based teams.
               </p>
             </div>
             <ul className={styles.tags}>
-              <li>React</li><li>NestJS</li><li>PostgreSQL</li><li>Socket.IO</li>
+              <li>React</li>
+              <li>NestJS</li>
+              <li>PostgreSQL</li>
+              <li>Socket.IO</li>
             </ul>
             <div className={styles.projectLinks}>
               <ProjectLink href="https://demo.syncr.cc">Live demo</ProjectLink>
-              <ProjectLink href="https://github.com/kinqbert/syncr">Source</ProjectLink>
+              <ProjectLink href="https://github.com/kinqbert/syncr">
+                Source
+              </ProjectLink>
             </div>
           </div>
           <div className={styles.syncrVisual} data-reveal aria-hidden="true">
             <div className={styles.browserBar}>
-              <i /><i /><i /><span>workspace / product-team</span>
+              <i />
+              <i />
+              <i />
+              <span>workspace / product-team</span>
             </div>
             <div className={styles.appShell}>
-              <aside><b>S</b><i /><i /><i /><i /></aside>
+              <aside>
+                <b>S</b>
+                <i />
+                <i />
+                <i />
+                <i />
+              </aside>
               <div className={styles.board}>
-                <div className={styles.boardHeader}><span>Product sprint</span><i /></div>
+                <div className={styles.boardHeader}>
+                  <span>Product sprint</span>
+                  <i />
+                </div>
                 <div className={styles.columns}>
-                  <div><b>TO DO</b><span /><span /><span /></div>
-                  <div><b>IN PROGRESS</b><span className={styles.activeCard} /><span /></div>
-                  <div><b>DONE</b><span /><span /></div>
+                  <div>
+                    <b>TO DO</b>
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div>
+                    <b>IN PROGRESS</b>
+                    <span className={styles.activeCard} />
+                    <span />
+                  </div>
+                  <div>
+                    <b>DONE</b>
+                    <span />
+                    <span />
+                  </div>
                 </div>
               </div>
             </div>
@@ -280,39 +350,70 @@ export function Portfolio() {
           className={`${styles.project} ${styles.projectSecondary}`}
           spotlightColor="rgba(255, 255, 255, 0.1)"
         >
-          <div className={styles.gadgetStoreVisual} data-reveal aria-hidden="true">
+          <div
+            className={styles.gadgetStoreVisual}
+            data-reveal
+            aria-hidden="true"
+          >
             <div className={styles.browserBar}>
-              <i /><i /><i /><span>nice-gadgets / catalog</span>
+              <i />
+              <i />
+              <i />
+              <span>nice-gadgets / catalog</span>
             </div>
             <div className={styles.storeShell}>
               <header className={styles.storeHeader}>
                 <b>NG</b>
-                <nav><span>Phones</span><span>Tablets</span><span>Accessories</span></nav>
+                <nav>
+                  <span>Phones</span>
+                  <span>Tablets</span>
+                  <span>Accessories</span>
+                </nav>
                 <i />
               </header>
               <div className={styles.storeBody}>
                 <aside className={styles.storeFilters}>
                   <strong>Filters</strong>
-                  <span /><span /><span />
-                  <div><i /><i /></div>
+                  <span />
+                  <span />
+                  <span />
+                  <div>
+                    <i />
+                    <i />
+                  </div>
                 </aside>
                 <div className={styles.storeCatalog}>
                   <div className={styles.storeCatalogHeader}>
-                    <div><small>Catalog</small><strong>Mobile phones</strong></div>
+                    <div>
+                      <small>Catalog</small>
+                      <strong>Mobile phones</strong>
+                    </div>
                     <span>24 products</span>
                   </div>
                   <div className={styles.productGrid}>
                     <div className={styles.productCard}>
-                      <div className={styles.device}><i /><span /></div>
-                      <b>Phone 14 Pro</b><small>$999</small>
+                      <div className={styles.device}>
+                        <i />
+                        <span />
+                      </div>
+                      <b>Phone 14 Pro</b>
+                      <small>$999</small>
                     </div>
                     <div className={styles.productCard}>
-                      <div className={styles.device}><i /><span /></div>
-                      <b>Phone 15</b><small>$1,099</small>
+                      <div className={styles.device}>
+                        <i />
+                        <span />
+                      </div>
+                      <b>Phone 15</b>
+                      <small>$1,099</small>
                     </div>
                     <div className={styles.productCard}>
-                      <div className={styles.device}><i /><span /></div>
-                      <b>Phone 15 Plus</b><small>$1,199</small>
+                      <div className={styles.device}>
+                        <i />
+                        <span />
+                      </div>
+                      <b>Phone 15 Plus</b>
+                      <small>$1,199</small>
                     </div>
                   </div>
                 </div>
@@ -327,42 +428,66 @@ export function Portfolio() {
             <div>
               <h3>Nice Gadgets</h3>
               <p>
-                A polished device store with fast search, filtering, sorting, and
-                rich product detail pages across screen sizes.
+                A polished device store with fast search, filtering, sorting,
+                and rich product detail pages across screen sizes.
               </p>
             </div>
             <ul className={styles.tags}>
-              <li>React</li><li>Zustand</li><li>SCSS</li><li>BEM</li>
+              <li>React</li>
+              <li>Zustand</li>
+              <li>SCSS</li>
+              <li>BEM</li>
             </ul>
             <div className={styles.projectLinks}>
-              <ProjectLink href="https://fs-mar24-kyrylos-witnesses.github.io/phone-catalog/">Live demo</ProjectLink>
-              <ProjectLink href="https://github.com/fs-mar24-kyrylos-witnesses/phone-catalog">Source</ProjectLink>
+              <ProjectLink href="https://fs-mar24-kyrylos-witnesses.github.io/phone-catalog/">
+                Live demo
+              </ProjectLink>
+              <ProjectLink href="https://github.com/fs-mar24-kyrylos-witnesses/phone-catalog">
+                Source
+              </ProjectLink>
             </div>
           </div>
         </SpotlightCard>
       </section>
 
-      <section className={`${styles.section} ${styles.experience}`} id="experience">
+      <section
+        className={`${styles.section} ${styles.experience}`}
+        id="experience"
+      >
         <div className={styles.sectionHeading} data-reveal>
           <p className={styles.kicker}>Experience / Where I&apos;ve built</p>
-          <h2>Production-minded<br /><span>from UI to infrastructure.</span></h2>
+          <h2>
+            Production-minded
+            <br />
+            <span>from UI to infrastructure.</span>
+          </h2>
         </div>
 
         <div className={styles.experienceGrid}>
           <article className={styles.experienceCard} data-reveal>
             <div className={styles.experienceTopline}>
               <span>01</span>
-              <span className={styles.current}><i data-pulse /> Current <em>AEC AI</em></span>
+              <span className={styles.current}>
+                <i data-pulse /> Current <em>AEC AI</em>
+              </span>
             </div>
             <div className={styles.experienceTitle}>
-              <p>Newsoft</p>
+              <p>Nomic AI</p>
               <time>Jun 2026 — Present</time>
             </div>
             <h3>Full-stack engineer</h3>
             <ul>
-              <li>Implementing third-party integrations across product workflows.</li>
-              <li>Building an MCP-based framework connecting AI agents with external tools and services.</li>
-              <li>Developing end-to-end product features across the React and Node.js stack.</li>
+              <li>
+                Implementing third-party integrations across product workflows.
+              </li>
+              <li>
+                Building an MCP-based framework connecting AI agents with
+                external tools and services.
+              </li>
+              <li>
+                Developing end-to-end product features across the React and
+                Node.js stack.
+              </li>
             </ul>
           </article>
 
@@ -377,9 +502,18 @@ export function Portfolio() {
             </div>
             <h3>Software engineer</h3>
             <ul>
-              <li>Built a canvas-based FinTech platform for interactive financial modeling.</li>
-              <li>Implemented Entra ID authentication and role-based access control.</li>
-              <li>Built Azure Functions ingestion pipelines and multi-tenant data isolation.</li>
+              <li>
+                Built a canvas-based FinTech platform for interactive financial
+                modeling.
+              </li>
+              <li>
+                Implemented Entra ID authentication and role-based access
+                control.
+              </li>
+              <li>
+                Built Azure Functions ingestion pipelines and multi-tenant data
+                isolation.
+              </li>
             </ul>
           </article>
 
@@ -394,18 +528,34 @@ export function Portfolio() {
             </div>
             <h3>Full-stack engineer</h3>
             <ul>
-              <li>Delivered AI chatbot, agent workflows, and gaming backend systems.</li>
-              <li>Owned a real-time chatbot platform using OpenAI API, WebSockets, and JWT.</li>
-              <li>Cut API response times 30–45% through indexing, caching, and query optimization.</li>
+              <li>
+                Delivered AI chatbot, agent workflows, and gaming backend
+                systems.
+              </li>
+              <li>
+                Owned a real-time chatbot platform using OpenAI API, WebSockets,
+                and JWT.
+              </li>
+              <li>
+                Cut API response times 30–45% through indexing, caching, and
+                query optimization.
+              </li>
             </ul>
           </article>
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.stackSection}`} id="stack">
+      <section
+        className={`${styles.section} ${styles.stackSection}`}
+        id="stack"
+      >
         <div className={styles.sectionHeading} data-reveal>
           <p className={styles.kicker}>Stack / Hard skills</p>
-          <h2>The right technology<br /><span>for the product in front of me.</span></h2>
+          <h2>
+            The right technology
+            <br />
+            <span>for the product in front of me.</span>
+          </h2>
         </div>
         <SpotlightGrid className={styles.skillGrid}>
           {skills.map((group) => (
@@ -414,7 +564,9 @@ export function Portfolio() {
                 <span>{group.number}</span>
                 <h3>{group.title}</h3>
                 <ul>
-                  {group.items.map((item) => <li key={item}>{item}</li>)}
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -437,9 +589,15 @@ export function Portfolio() {
       </section>
 
       <section className={styles.contact} id="contact">
-        <p className={styles.kicker} data-reveal>Contact / Start a conversation</p>
+        <p className={styles.kicker} data-reveal>
+          Contact / Start a conversation
+        </p>
         <div className={styles.contactMain} data-reveal>
-          <h2>Have something<br />worth building?</h2>
+          <h2>
+            Have something
+            <br />
+            worth building?
+          </h2>
           <a
             href={links.linkedin}
             target="_blank"
@@ -458,12 +616,20 @@ export function Portfolio() {
           data-reveal
         >
           <span>{emailAddress}</span>
-          <small aria-live="polite">{isEmailCopied ? "Copied" : "Click to copy"}</small>
+          <small aria-live="polite">
+            {isEmailCopied ? "Copied" : "Click to copy"}
+          </small>
         </button>
         <div className={styles.socials} data-reveal>
-          <a href={links.github} target="_blank" rel="noreferrer">GitHub <ArrowIcon /></a>
-          <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowIcon /></a>
-          <a href={links.telegram} target="_blank" rel="noreferrer">Telegram <ArrowIcon /></a>
+          <a href={links.github} target="_blank" rel="noreferrer">
+            GitHub <ArrowIcon />
+          </a>
+          <a href={links.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn <ArrowIcon />
+          </a>
+          <a href={links.telegram} target="_blank" rel="noreferrer">
+            Telegram <ArrowIcon />
+          </a>
         </div>
       </section>
 
