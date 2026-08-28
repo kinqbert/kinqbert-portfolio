@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import "./globals.scss";
 
@@ -46,6 +47,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script id="scroll-restoration" strategy="beforeInteractive">
+          {`window.history.scrollRestoration = "manual";`}
+        </Script>
+      </head>
       <body>{children}</body>
     </html>
   );

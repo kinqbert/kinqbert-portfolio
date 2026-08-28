@@ -216,7 +216,7 @@ function DitheredWaves({
     const dpr = gl.getPixelRatio();
     uniforms.current.resolution.value.set(
       Math.floor(size.width * dpr),
-      Math.floor(size.height * dpr)
+      Math.floor(size.height * dpr),
     );
   }, [gl, size]);
 
@@ -228,11 +228,13 @@ function DitheredWaves({
       const dpr = gl.getPixelRatio();
       mouseRef.current.set(
         (event.clientX - bounds.left) * dpr,
-        (event.clientY - bounds.top) * dpr
+        (event.clientY - bounds.top) * dpr,
       );
     };
 
-    window.addEventListener("pointermove", updateMousePosition, { passive: true });
+    window.addEventListener("pointermove", updateMousePosition, {
+      passive: true,
+    });
     return () => window.removeEventListener("pointermove", updateMousePosition);
   }, [enableMouseInteraction, gl]);
 
