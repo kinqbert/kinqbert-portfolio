@@ -472,7 +472,7 @@ export function Portfolio() {
               </span>
             </div>
             <div className={styles.experienceTitle}>
-              <p>Newsoft</p>
+              <p>Nomic AI</p>
               <time>Jun 2026 — Present</time>
             </div>
             <h3>Full-stack engineer</h3>
