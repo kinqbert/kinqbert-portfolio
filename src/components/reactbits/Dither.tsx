@@ -184,7 +184,7 @@ type WaveUniforms = {
   mouseRadius: THREE.Uniform<number>;
 };
 
-type DitheredWavesProps = Required<DitherProps>;
+type DitheredWavesProps = Required<Omit<DitherProps, "onReady">>;
 
 function DitheredWaves({
   waveSpeed,
@@ -277,6 +277,7 @@ export type DitherProps = {
   disableAnimation?: boolean;
   enableMouseInteraction?: boolean;
   mouseRadius?: number;
+  onReady?: () => void;
 };
 
 export default function Dither({
@@ -289,6 +290,7 @@ export default function Dither({
   disableAnimation = false,
   enableMouseInteraction = true,
   mouseRadius = 1,
+  onReady,
 }: DitherProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -306,6 +308,9 @@ export default function Dither({
       camera={{ position: [0, 0, 6] }}
       dpr={1}
       gl={{ antialias: true, preserveDrawingBuffer: true }}
+      onCreated={() => {
+        if (onReady) requestAnimationFrame(onReady);
+      }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}

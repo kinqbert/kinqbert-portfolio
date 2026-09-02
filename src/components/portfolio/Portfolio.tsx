@@ -29,6 +29,7 @@ const links = {
 };
 
 const emailAddress = "perekhodko.maksym@gmail.com";
+const emailHref = `mailto:${emailAddress}?subject=Let%27s%20build%20something`;
 
 const skills = [
   {
@@ -82,8 +83,13 @@ function ProjectLink({ href, children }: { href: string; children: string }) {
 export function Portfolio() {
   const root = useRef<HTMLElement>(null);
   const copyResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const loaderStartedAt = useRef(0);
   const resumeText = useRef<ScrambleTextHandle>(null);
   const talkText = useRef<ScrambleTextHandle>(null);
+  const [isDocumentReady, setIsDocumentReady] = useState(false);
+  const [isBackgroundReady, setIsBackgroundReady] = useState(false);
+  const [isLoaderLeaving, setIsLoaderLeaving] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const [isEmailCopied, setIsEmailCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -104,6 +110,78 @@ export function Portfolio() {
     if (copyResetTimer.current) clearTimeout(copyResetTimer.current);
     copyResetTimer.current = setTimeout(() => setIsEmailCopied(false), 1800);
   };
+
+  useEffect(() => {
+    loaderStartedAt.current = performance.now();
+
+    let isActive = true;
+    let resolveWindowLoad: (() => void) | undefined;
+    const windowReady =
+      document.readyState === "complete"
+        ? Promise.resolve()
+        : new Promise<void>((resolve) => {
+            resolveWindowLoad = () => resolve();
+            window.addEventListener("load", resolveWindowLoad, { once: true });
+          });
+
+    Promise.all([windowReady, document.fonts?.ready ?? Promise.resolve()]).then(
+      () => {
+        if (isActive) setIsDocumentReady(true);
+      },
+    );
+
+    return () => {
+      isActive = false;
+      if (resolveWindowLoad) {
+        window.removeEventListener("load", resolveWindowLoad);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const fallbackTimer = window.setTimeout(
+      () => setIsBackgroundReady(true),
+      5000,
+    );
+
+    return () => window.clearTimeout(fallbackTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!isDocumentReady || !isBackgroundReady) return;
+
+    const elapsed = performance.now() - loaderStartedAt.current;
+    let removeTimer: number | undefined;
+    const exitTimer = window.setTimeout(() => {
+      setIsLoaderLeaving(true);
+      removeTimer = window.setTimeout(() => setShowLoader(false), 900);
+    }, Math.max(0, 1500 - elapsed));
+
+    return () => {
+      window.clearTimeout(exitTimer);
+      if (removeTimer) window.clearTimeout(removeTimer);
+    };
+  }, [isBackgroundReady, isDocumentReady]);
+
+  useEffect(() => {
+    if (!showLoader) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const supportsStableGutter = CSS.supports("scrollbar-gutter: stable");
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+    if (!supportsStableGutter && scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
+    };
+  }, [showLoader]);
 
   useEffect(() => {
     if (
@@ -165,6 +243,22 @@ export function Portfolio() {
 
   return (
     <main id="top" ref={root} className={styles.page}>
+      {showLoader && (
+        <div
+          className={`${styles.loader} ${isLoaderLeaving ? styles.loaderLeaving : ""}`}
+          role="status"
+          aria-label="Loading portfolio"
+        >
+          <div className={styles.loaderContent}>
+            <Image src={PortfolioLogo} alt="" priority />
+            <div className={styles.loaderTrack} aria-hidden="true">
+              <span />
+            </div>
+            <span className={styles.loaderLabel}>Preparing portfolio</span>
+          </div>
+        </div>
+      )}
+
       <header className={styles.header} data-hero-reveal>
         <div className={styles.headerInner}>
           <div className={styles.logo} aria-label="Maksym Perekhodko">
@@ -176,9 +270,7 @@ export function Portfolio() {
             <a href="#stack">Stack</a>
           </nav>
           <a
-            href={links.linkedin}
-            target="_blank"
-            rel="noreferrer"
+            href={emailHref}
             className={styles.headerCta}
             onMouseEnter={() => talkText.current?.play()}
             onFocus={() => talkText.current?.play()}
@@ -199,12 +291,14 @@ export function Portfolio() {
             pixelSize={3}
             enableMouseInteraction
             mouseRadius={0.72}
+            onReady={() => setIsBackgroundReady(true)}
           />
         </div>
         <div className={styles.heroInner}>
           <div className={styles.heroMain}>
             <p className={styles.eyebrow} data-hero-reveal>
-              <span data-pulse /> Full-stack engineer · Ukraine
+              <span className={styles.eyebrowMark} aria-hidden="true" />
+              Full-stack engineer · Ukraine
             </p>
             <h1
               className={styles.heroTitle}
@@ -290,6 +384,36 @@ export function Portfolio() {
                 role-based teams.
               </p>
             </div>
+            <dl className={styles.projectDetails}>
+              <div>
+                <dt>Context</dt>
+                <dd>
+                  Collaboration work was split across task, calendar, and
+                  messaging tools.
+                </dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>
+                  I designed and built the full product flow, from the React
+                  interface to the NestJS API and data model.
+                </dd>
+              </div>
+              <div>
+                <dt>Engineering</dt>
+                <dd>
+                  Socket.IO keeps chat and notifications live; PostgreSQL and
+                  role-based access keep team data structured and scoped.
+                </dd>
+              </div>
+              <div>
+                <dt>Outcome</dt>
+                <dd>
+                  One responsive workspace now covers six core collaboration
+                  flows with real-time updates and permission-aware teams.
+                </dd>
+              </div>
+            </dl>
             <ul className={styles.tags}>
               <li>React</li>
               <li>NestJS</li>
@@ -432,6 +556,36 @@ export function Portfolio() {
                 and rich product detail pages across screen sizes.
               </p>
             </div>
+            <dl className={styles.projectDetails}>
+              <div>
+                <dt>Context</dt>
+                <dd>
+                  A large device catalog needed to remain easy to browse on
+                  both desktop and mobile.
+                </dd>
+              </div>
+              <div>
+                <dt>My role</dt>
+                <dd>
+                  I implemented the front-end product experience and its
+                  responsive catalog interactions as part of the project team.
+                </dd>
+              </div>
+              <div>
+                <dt>Engineering</dt>
+                <dd>
+                  Reusable React views and centralized Zustand state connect
+                  search, filters, sorting, and product detail navigation.
+                </dd>
+              </div>
+              <div>
+                <dt>Outcome</dt>
+                <dd>
+                  Shoppers can move from discovery to a detailed product view
+                  in one consistent flow across screen sizes.
+                </dd>
+              </div>
+            </dl>
             <ul className={styles.tags}>
               <li>React</li>
               <li>Zustand</li>
@@ -599,11 +753,9 @@ export function Portfolio() {
             worth building?
           </h2>
           <a
-            href={links.linkedin}
-            target="_blank"
-            rel="noreferrer"
+            href={emailHref}
             className={styles.contactButton}
-            aria-label="Open Maksym's LinkedIn profile"
+            aria-label="Email Maksym about a project"
           >
             <ArrowIcon />
           </a>
