@@ -1,7 +1,27 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import Script from "next/script";
 
 import "./globals.scss";
+
+const dmSans = localFont({
+  src: "./fonts/DMSans-Variable.woff2",
+  weight: "100 1000",
+  display: "swap",
+  variable: "--font-dm-sans",
+});
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Maksym Perekhodko",
+  jobTitle: "Full-stack Engineer",
+  url: "https://kinqbert.dev",
+  sameAs: [
+    "https://github.com/kinqbert",
+    "https://www.linkedin.com/in/maksym-perekhodko/",
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kinqbert.dev"),
@@ -46,11 +66,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
       <head>
         <Script id="scroll-restoration" strategy="beforeInteractive">
           {`window.history.scrollRestoration = "manual";`}
         </Script>
+        {/* Hide reveal targets only when JS will animate them in; un-hide if the app never boots. */}
+        <Script id="motion-flag" strategy="beforeInteractive">
+          {`if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  var root = document.documentElement;
+  root.classList.add("motion");
+  setTimeout(function () {
+    if (!window.__motionReady) root.classList.remove("motion");
+  }, 4000);
+}`}
+        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </head>
       <body>{children}</body>
     </html>

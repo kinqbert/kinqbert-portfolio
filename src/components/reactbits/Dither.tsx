@@ -184,7 +184,7 @@ type WaveUniforms = {
   mouseRadius: THREE.Uniform<number>;
 };
 
-type DitheredWavesProps = Required<Omit<DitherProps, "onReady">>;
+type DitheredWavesProps = Required<Omit<DitherProps, "onReady" | "paused">>;
 
 function DitheredWaves({
   waveSpeed,
@@ -277,6 +277,7 @@ export type DitherProps = {
   disableAnimation?: boolean;
   enableMouseInteraction?: boolean;
   mouseRadius?: number;
+  paused?: boolean;
   onReady?: () => void;
 };
 
@@ -290,6 +291,7 @@ export default function Dither({
   disableAnimation = false,
   enableMouseInteraction = true,
   mouseRadius = 1,
+  paused = false,
   onReady,
 }: DitherProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -306,8 +308,11 @@ export default function Dither({
     <Canvas
       className={styles.canvas}
       camera={{ position: [0, 0, 6] }}
-      dpr={1}
-      gl={{ antialias: true, preserveDrawingBuffer: true }}
+      // Render one canvas pixel per dither block and upscale with crisp pixels:
+      // same look as pixelSize at dpr 1, with ~pixelSize² fewer shader runs.
+      dpr={1 / pixelSize}
+      frameloop={paused ? "never" : "always"}
+      gl={{ antialias: false, powerPreference: "high-performance" }}
       onCreated={() => {
         if (onReady) requestAnimationFrame(onReady);
       }}
@@ -318,7 +323,7 @@ export default function Dither({
         waveAmplitude={waveAmplitude}
         waveColor={waveColor}
         colorNum={colorNum}
-        pixelSize={pixelSize}
+        pixelSize={1}
         disableAnimation={disableAnimation || prefersReducedMotion}
         enableMouseInteraction={enableMouseInteraction}
         mouseRadius={mouseRadius}

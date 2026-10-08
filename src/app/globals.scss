@@ -1,5 +1,5 @@
-@import "../styles/fonts.scss";
 @import "../styles/reset.scss";
+@import "lenis/dist/lenis.css";
 
 html {
   scroll-behavior: smooth;
@@ -9,12 +9,15 @@ html {
   background: #08090a;
 }
 
+// Lenis animates anchor jumps itself; native smooth scrolling would fight it.
+html.lenis { scroll-behavior: auto; }
+
 body {
   min-height: 100dvh;
   width: 100%;
   color: #f3f1eb;
   background: #08090a;
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--font-dm-sans), Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

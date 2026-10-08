@@ -1,25 +1,17 @@
-"use client";
-
-import { animate, createScope, stagger } from "animejs";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import PortfolioLogo from "@/assets/portfolio-logo.svg";
 
 import { SpotlightCard } from "@/components/reactbits/SpotlightCard";
 import { SpotlightGrid } from "@/components/reactbits/SpotlightGrid";
-import {
-  ScrambleText,
-  type ScrambleTextHandle,
-} from "@/components/reactbits/ScrambleText";
 import { WaveScrambleText } from "@/components/reactbits/WaveScrambleText";
 
+import { CopyEmailButton } from "./CopyEmailButton";
+import { HeroBackground } from "./HeroBackground";
+import { MotionController } from "./MotionController";
+import { ScrambleLink } from "./ScrambleLink";
 import styles from "./Portfolio.module.scss";
-
-const Dither = dynamic(() => import("@/components/reactbits/Dither"), {
-  ssr: false,
-});
 
 const links = {
   github: "https://github.com/kinqbert",
@@ -80,237 +72,73 @@ function ProjectLink({ href, children }: { href: string; children: string }) {
   );
 }
 
-export function Portfolio() {
-  const root = useRef<HTMLElement>(null);
-  const copyResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const loaderStartedAt = useRef(0);
-  const resumeText = useRef<ScrambleTextHandle>(null);
-  const talkText = useRef<ScrambleTextHandle>(null);
-  const [isDocumentReady, setIsDocumentReady] = useState(false);
-  const [isBackgroundReady, setIsBackgroundReady] = useState(false);
-  const [isLoaderLeaving, setIsLoaderLeaving] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
-  const [isEmailCopied, setIsEmailCopied] = useState(false);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(emailAddress);
-    } catch {
-      const textarea = document.createElement("textarea");
-      textarea.value = emailAddress;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      textarea.remove();
-    }
-
-    setIsEmailCopied(true);
-    if (copyResetTimer.current) clearTimeout(copyResetTimer.current);
-    copyResetTimer.current = setTimeout(() => setIsEmailCopied(false), 1800);
-  };
-
-  useEffect(() => {
-    loaderStartedAt.current = performance.now();
-
-    let isActive = true;
-    let resolveWindowLoad: (() => void) | undefined;
-    const windowReady =
-      document.readyState === "complete"
-        ? Promise.resolve()
-        : new Promise<void>((resolve) => {
-            resolveWindowLoad = () => resolve();
-            window.addEventListener("load", resolveWindowLoad, { once: true });
-          });
-
-    Promise.all([windowReady, document.fonts?.ready ?? Promise.resolve()]).then(
-      () => {
-        if (isActive) setIsDocumentReady(true);
-      },
-    );
-
-    return () => {
-      isActive = false;
-      if (resolveWindowLoad) {
-        window.removeEventListener("load", resolveWindowLoad);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const fallbackTimer = window.setTimeout(
-      () => setIsBackgroundReady(true),
-      5000,
-    );
-
-    return () => window.clearTimeout(fallbackTimer);
-  }, []);
-
-  useEffect(() => {
-    if (!isDocumentReady || !isBackgroundReady) return;
-
-    const elapsed = performance.now() - loaderStartedAt.current;
-    let removeTimer: number | undefined;
-    const exitTimer = window.setTimeout(() => {
-      setIsLoaderLeaving(true);
-      removeTimer = window.setTimeout(() => setShowLoader(false), 900);
-    }, Math.max(0, 1500 - elapsed));
-
-    return () => {
-      window.clearTimeout(exitTimer);
-      if (removeTimer) window.clearTimeout(removeTimer);
-    };
-  }, [isBackgroundReady, isDocumentReady]);
-
-  useEffect(() => {
-    if (!showLoader) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const previousPaddingRight = document.body.style.paddingRight;
-    const supportsStableGutter = CSS.supports("scrollbar-gutter: stable");
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-
-    document.body.style.overflow = "hidden";
-    if (!supportsStableGutter && scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.body.style.paddingRight = previousPaddingRight;
-    };
-  }, [showLoader]);
-
-  useEffect(() => {
-    if (
-      !root.current ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
-
-    const scope = createScope({ root }).add(() => {
-      animate("[data-hero-reveal]", {
-        opacity: [0, 1],
-        y: [42, 0],
-        duration: 1000,
-        delay: stagger(95),
-        ease: "outExpo",
-      });
-
-      animate("[data-pulse]", {
-        scale: [1, 1.35, 1],
-        opacity: [1, 0.45, 1],
-        duration: 2200,
-        loop: true,
-        ease: "inOutSine",
-      });
-
-      const revealElements =
-        root.current?.querySelectorAll<HTMLElement>("[data-reveal]");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            animate(entry.target, {
-              opacity: [0, 1],
-              y: [36, 0],
-              duration: 850,
-              ease: "outExpo",
-            });
-            observer.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.14 },
-      );
-
-      revealElements?.forEach((element) => observer.observe(element));
-
-      return () => observer.disconnect();
-    });
-
-    return () => scope.revert();
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (copyResetTimer.current) clearTimeout(copyResetTimer.current);
-    };
-  }, []);
-
+// One masked line of a heading; MotionController slides [data-line] up into view.
+function Line({ children, muted }: { children: ReactNode; muted?: boolean }) {
   return (
-    <main id="top" ref={root} className={styles.page}>
-      {showLoader && (
-        <div
-          className={`${styles.loader} ${isLoaderLeaving ? styles.loaderLeaving : ""}`}
-          role="status"
-          aria-label="Loading portfolio"
-        >
-          <div className={styles.loaderContent}>
-            <Image src={PortfolioLogo} alt="" priority />
-            <div className={styles.loaderTrack} aria-hidden="true">
-              <span />
-            </div>
-            <span className={styles.loaderLabel}>Preparing portfolio</span>
-          </div>
-        </div>
-      )}
+    <span className={styles.line}>
+      <span data-line className={muted ? styles.muted : undefined}>
+        {children}
+      </span>
+    </span>
+  );
+}
 
-      <header className={styles.header} data-hero-reveal>
+// Stagger index for the CSS hero entrance.
+const heroStep = (index: number) => ({ "--i": index }) as CSSProperties;
+
+export function Portfolio() {
+  return (
+    <main id="top" className={styles.page}>
+      <div
+        className={styles.scrollProgress}
+        data-scroll="progress"
+        aria-hidden="true"
+      />
+      <MotionController rootId="top" />
+
+      <header className={styles.header} data-hero-reveal style={heroStep(0)}>
         <div className={styles.headerInner}>
-          <div className={styles.logo} aria-label="Maksym Perekhodko">
-            <Image src={PortfolioLogo} alt="" priority />
-          </div>
+          <a href="#top" className={styles.logo}>
+            <Image src={PortfolioLogo} alt="Maksym Perekhodko — home" priority />
+          </a>
           <nav className={styles.nav} aria-label="Main navigation">
             <a href="#work">Projects</a>
             <a href="#experience">Experience</a>
             <a href="#stack">Stack</a>
           </nav>
-          <a
-            href={emailHref}
-            className={styles.headerCta}
-            onMouseEnter={() => talkText.current?.play()}
-            onFocus={() => talkText.current?.play()}
-          >
-            <ScrambleText ref={talkText}>LET&apos;S TALK</ScrambleText>
-          </a>
+          <ScrambleLink href={emailHref} className={styles.headerCta}>
+            LET&apos;S TALK
+          </ScrambleLink>
         </div>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.ditherBackground} aria-hidden="true">
-          <Dither
-            waveColor={[0.48, 0.48, 0.48]}
-            waveSpeed={0.035}
-            waveFrequency={2.8}
-            waveAmplitude={0.32}
-            colorNum={4}
-            pixelSize={3}
-            enableMouseInteraction
-            mouseRadius={0.72}
-            onReady={() => setIsBackgroundReady(true)}
-          />
-        </div>
-        <div className={styles.heroInner}>
+        <HeroBackground />
+        <div className={styles.heroInner} data-scroll="hero">
           <div className={styles.heroMain}>
-            <p className={styles.eyebrow} data-hero-reveal>
-              <span className={styles.eyebrowMark} aria-hidden="true" />
-              Full-stack engineer · Ukraine
-            </p>
             <h1
               className={styles.heroTitle}
               aria-label="I build digital systems that hold up"
             >
-              <span data-hero-reveal>I build digital</span>
-              <span data-hero-reveal className={styles.outlineText}>
+              <span data-hero-reveal style={heroStep(1)}>
+                I build digital
+              </span>
+              <span
+                data-hero-reveal
+                style={heroStep(2)}
+                className={styles.outlineText}
+              >
                 systems that
               </span>
-              <span data-hero-reveal>hold up.</span>
+              <span data-hero-reveal style={heroStep(3)}>
+                hold up.
+              </span>
             </h1>
-            <div className={styles.heroBottom} data-hero-reveal>
+            <div
+              className={styles.heroBottom}
+              data-hero-reveal
+              style={heroStep(4)}
+            >
               <p>
                 My name is{" "}
                 <WaveScrambleText className={styles.animatedName}>
@@ -319,59 +147,49 @@ export function Portfolio() {
                 . I&apos;m a full-stack engineer.
               </p>
               <div className={styles.heroActions}>
-                <a
+                <ScrambleLink
                   href={links.cv}
-                  target="_blank"
-                  rel="noreferrer"
                   className={styles.primaryButton}
-                  onMouseEnter={() => resumeText.current?.play()}
-                  onFocus={() => resumeText.current?.play()}
+                  external
                 >
-                  <ScrambleText ref={resumeText}>VIEW RÉSUMÉ</ScrambleText>
-                </a>
+                  VIEW RÉSUMÉ
+                </ScrambleLink>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section
-        className={styles.metrics}
-        aria-label="Career highlights"
-        data-reveal
-      >
-        <div>
-          <span>Current position</span>
-          <strong>Full-stack</strong>
-        </div>
-        <div>
-          <span>Commercial experience</span>
-          <strong>2+ years</strong>
-        </div>
-        <div>
-          <span>Personal projects</span>
-          <strong>3 projects</strong>
-        </div>
-        <div>
-          <span>Primary technologies</span>
-          <strong>React / Node</strong>
-        </div>
+      <section className={styles.about} aria-labelledby="about-heading">
+        <p className={styles.kicker} id="about-heading" data-reveal="fade">
+          About / Who I am
+        </p>
+        <p className={styles.aboutText} data-reveal="fade">
+          I&apos;m a full-stack engineer with <em>2+ years</em> of commercial
+          experience shipping production web apps with{" "}
+          <em>React, TypeScript, Node.js, and NestJS</em>. I&apos;ve worked
+          across FinTech, AI automation, real-time chat, and gaming backends,
+          and I&apos;m currently building <em>AI agent tooling at Nomic AI</em>.
+          A computer science background keeps me focused on maintainable
+          architecture, fast APIs, and features that work end to end.
+        </p>
       </section>
 
       <section className={styles.section} id="work">
-        <div className={styles.sectionHeading} data-reveal>
-          <p className={styles.kicker}>Projects / selected work</p>
-          <h2>
-            Built for real use,
-            <br />
-            <span>not just the screenshot.</span>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker} data-reveal="fade">
+            Projects / Selected work
+          </p>
+          <h2 data-reveal="lines">
+            <Line>Built for real use,</Line>
+            <Line muted>not just the screenshot.</Line>
           </h2>
         </div>
 
         <SpotlightCard
           className={`${styles.project} ${styles.projectFeatured}`}
         >
-          <div className={styles.projectCopy} data-reveal>
+          <div className={styles.projectCopy} data-reveal="fade">
             <div className={styles.projectTopline}>
               <span>01 / Featured project</span>
               <span>Full-stack</span>
@@ -427,7 +245,12 @@ export function Portfolio() {
               </ProjectLink>
             </div>
           </div>
-          <div className={styles.syncrVisual} data-reveal aria-hidden="true">
+          <div
+            className={styles.syncrVisual}
+            data-reveal="clip"
+            data-scroll="parallax"
+            aria-hidden="true"
+          >
             <div className={styles.browserBar}>
               <i />
               <i />
@@ -476,7 +299,8 @@ export function Portfolio() {
         >
           <div
             className={styles.gadgetStoreVisual}
-            data-reveal
+            data-reveal="clip"
+            data-scroll="parallax"
             aria-hidden="true"
           >
             <div className={styles.browserBar}>
@@ -544,7 +368,7 @@ export function Portfolio() {
               </div>
             </div>
           </div>
-          <div className={styles.projectCopy} data-reveal>
+          <div className={styles.projectCopy} data-reveal="fade">
             <div className={styles.projectTopline}>
               <span>02 / E-commerce</span>
               <span>Front-end</span>
@@ -608,17 +432,18 @@ export function Portfolio() {
         className={`${styles.section} ${styles.experience}`}
         id="experience"
       >
-        <div className={styles.sectionHeading} data-reveal>
-          <p className={styles.kicker}>Experience / Where I&apos;ve built</p>
-          <h2>
-            Production-minded
-            <br />
-            <span>from UI to infrastructure.</span>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker} data-reveal="fade">
+            Experience / Where I&apos;ve built
+          </p>
+          <h2 data-reveal="lines">
+            <Line>Production-minded</Line>
+            <Line muted>from UI to infrastructure.</Line>
           </h2>
         </div>
 
         <div className={styles.experienceGrid}>
-          <article className={styles.experienceCard} data-reveal>
+          <article className={styles.experienceCard} data-reveal="fade">
             <div className={styles.experienceTopline}>
               <span>01</span>
               <span className={styles.current}>
@@ -645,7 +470,7 @@ export function Portfolio() {
             </ul>
           </article>
 
-          <article className={styles.experienceCard} data-reveal>
+          <article className={styles.experienceCard} data-reveal="fade">
             <div className={styles.experienceTopline}>
               <span>02</span>
               <span>FinTech product</span>
@@ -671,7 +496,7 @@ export function Portfolio() {
             </ul>
           </article>
 
-          <article className={styles.experienceCard} data-reveal>
+          <article className={styles.experienceCard} data-reveal="fade">
             <div className={styles.experienceTopline}>
               <span>03</span>
               <span>AI &amp; real-time systems</span>
@@ -703,18 +528,19 @@ export function Portfolio() {
         className={`${styles.section} ${styles.stackSection}`}
         id="stack"
       >
-        <div className={styles.sectionHeading} data-reveal>
-          <p className={styles.kicker}>Stack / Hard skills</p>
-          <h2>
-            The right technology
-            <br />
-            <span>for the product in front of me.</span>
+        <div className={styles.sectionHeading}>
+          <p className={styles.kicker} data-reveal="fade">
+            Stack / Hard skills
+          </p>
+          <h2 data-reveal="lines">
+            <Line>The right technology</Line>
+            <Line muted>for the product in front of me.</Line>
           </h2>
         </div>
         <SpotlightGrid className={styles.skillGrid}>
           {skills.map((group) => (
             <div key={group.title} className={styles.skillCard}>
-              <div data-reveal>
+              <div data-reveal="fade">
                 <span>{group.number}</span>
                 <h3>{group.title}</h3>
                 <ul>
@@ -728,8 +554,8 @@ export function Portfolio() {
         </SpotlightGrid>
       </section>
 
-      <section className={styles.education} data-reveal>
-        <p className={styles.kicker}>Education / foundation</p>
+      <section className={styles.education} data-reveal="fade">
+        <p className={styles.kicker}>Education / Foundation</p>
         <div>
           <span>2022 — 2026</span>
           <h3>Bachelor&apos;s in Computer Science</h3>
@@ -738,19 +564,18 @@ export function Portfolio() {
         <div>
           <span>Additional education</span>
           <h3>Full-stack Developer</h3>
-          <p>Mate academy</p>
+          <p>Mate Academy</p>
         </div>
       </section>
 
       <section className={styles.contact} id="contact">
-        <p className={styles.kicker} data-reveal>
+        <p className={styles.kicker} data-reveal="fade">
           Contact / Start a conversation
         </p>
-        <div className={styles.contactMain} data-reveal>
-          <h2>
-            Have something
-            <br />
-            worth building?
+        <div className={styles.contactMain}>
+          <h2 data-reveal="lines">
+            <Line>Have something</Line>
+            <Line>worth building?</Line>
           </h2>
           <a
             href={emailHref}
@@ -760,19 +585,8 @@ export function Portfolio() {
             <ArrowIcon />
           </a>
         </div>
-        <button
-          className={styles.email}
-          type="button"
-          onClick={copyEmail}
-          aria-label={`Copy ${emailAddress} to clipboard`}
-          data-reveal
-        >
-          <span>{emailAddress}</span>
-          <small aria-live="polite">
-            {isEmailCopied ? "Copied" : "Click to copy"}
-          </small>
-        </button>
-        <div className={styles.socials} data-reveal>
+        <CopyEmailButton email={emailAddress} />
+        <div className={styles.socials} data-reveal="stagger">
           <a href={links.github} target="_blank" rel="noreferrer">
             GitHub <ArrowIcon />
           </a>
