@@ -15,7 +15,7 @@ function BrowserBar({ path }: { path: string }) {
 
 export function SyncrMockup() {
   return (
-    <div className={styles.window} data-scroll="parallax">
+    <div className={styles.window}>
       <BrowserBar path="workspace / product-team" />
       <div className={styles.appShell}>
         <aside>
@@ -62,7 +62,7 @@ const phones = [
 
 export function StoreMockup() {
   return (
-    <div className={styles.window} data-scroll="parallax">
+    <div className={styles.window}>
       <BrowserBar path="nice-gadgets / catalog" />
       <div className={styles.storeShell}>
         <header className={styles.storeHeader}>

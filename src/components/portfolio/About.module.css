@@ -1,17 +1,29 @@
 .about {
-  padding: var(--section-space) var(--gutter);
-  display: grid;
-  grid-template-columns: 0.42fr 1fr;
-  align-items: start;
+  padding: 0 var(--gutter);
+}
+
+/* Hairline under the hero, then label left, statement right. */
+.inner {
+  padding-top: var(--section-space);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
   border-top: 1px solid var(--line);
 }
 
+.label {
+  flex: 1 1 260px;
+  padding-top: 8px;
+}
+
 .text {
-  --size: clamp(28px, 3.2vw, 50px);
+  --size: clamp(26px, 2.8vw, 40px);
   --tracking: -0.015em;
-  max-width: 1040px;
+  flex: 999 1 560px;
+  min-width: 0;
+  max-width: 880px;
   color: var(--muted);
-  line-height: 1.16;
+  line-height: 1.18;
   text-wrap: pretty;
 
   & em {
@@ -21,8 +33,17 @@
 }
 
 @media (max-width: 720px) {
-  .about {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .label {
+    flex: none;
+    padding-top: 0;
+  }
+
+  .text {
+    flex: none;
   }
 }

@@ -13,7 +13,7 @@ export function Contact() {
   return (
     <section className={styles.contact} id="contact">
       <p className={shared.label} data-reveal="fade">
-        Contact / Start a conversation
+        06 — Contact
       </p>
       <div className={styles.main}>
         <h2 className={shared.display} data-reveal="lines">

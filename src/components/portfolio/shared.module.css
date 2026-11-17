@@ -82,42 +82,22 @@
   color: var(--accent);
 }
 
-/* Standard section: kicker on the left, big two-line heading on the right.
-   Sections tune their vertical rhythm with --section-top / --section-bottom. */
-.section {
-  padding: var(--section-top, var(--section-space)) var(--gutter)
-    var(--section-bottom, 0);
+/* Standard section block: the content column with space above each section. */
+.block {
+  padding: 0 var(--gutter);
 }
 
-.sectionHeading {
-  margin-bottom: clamp(56px, 7vw, 112px);
-  display: grid;
-  grid-template-columns: 0.42fr 1fr;
-  align-items: start;
+.blockInner {
+  padding-top: var(--section-space);
+}
 
-  & > p {
-    padding-top: 0.9em;
-  }
-
-  & h2 {
-    --size: clamp(48px, 7vw, 116px);
-    --tracking: -0.025em;
-    line-height: 0.96;
-    text-wrap: balance;
-  }
+/* Small numbered title ("03 — Experience") that sits above a section's content. */
+.sectionLabel {
+  margin-bottom: 40px;
 }
 
 @media (max-width: 720px) {
-  .sectionHeading {
-    grid-template-columns: 1fr;
-    gap: 20px;
-
-    & > p {
-      padding-top: 0;
-    }
-
-    & h2 {
-      --size: clamp(44px, 13vw, 68px);
-    }
+  .sectionLabel {
+    margin-bottom: 28px;
   }
 }

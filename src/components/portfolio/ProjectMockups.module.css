@@ -14,9 +14,13 @@
   --d-hi: #f3eee3;
   --d-line: rgba(243, 238, 227, 0.08);
 
-  height: 500px;
+  /* Fills its mat and runs off the bottom edge, like a screen cropped in a photo. */
+  /* Explicit width: inline-size containment ignores content, so it would otherwise collapse. */
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  container-type: inline-size;
   color: var(--d-hi);
   background: var(--d-window);
   box-shadow:
@@ -333,14 +337,10 @@
   }
 }
 
-@media (max-width: 720px) {
-  .window {
-    height: 360px;
-    border-radius: 10px 10px 0 0;
-  }
-
+/* The windows size to their card, so they adapt to their own width, not the viewport's. */
+@container (max-width: 560px) {
   .appShell aside {
-    width: 46px;
+    width: 52px;
   }
 
   .appShell aside i {
@@ -348,35 +348,48 @@
   }
 
   .board {
-    padding: 18px 12px;
+    padding: 20px 16px;
+  }
+
+  .boardHeader {
+    margin-bottom: 24px;
   }
 
   .columns {
-    gap: 6px;
+    gap: 8px;
 
     & span {
-      height: 66px;
+      height: 62px;
     }
   }
 
   .storeFilters {
-    width: 76px;
-    padding-inline: 12px;
-  }
-
-  .storeHeader nav {
     display: none;
   }
 
   .storeCatalog {
-    padding: 18px 12px;
+    padding: 20px 18px;
   }
 
   .productGrid {
-    gap: 6px;
+    gap: 8px;
   }
 
   .productCard {
-    padding: 8px;
+    padding: 10px;
+  }
+}
+
+@container (max-width: 400px) {
+  .storeHeader nav {
+    display: none;
+  }
+
+  .board {
+    padding: 16px 12px;
+  }
+
+  .columns span {
+    height: 52px;
   }
 }

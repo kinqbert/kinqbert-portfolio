@@ -1,6 +1,6 @@
 import { WaveScrambleText } from "@/components/reactbits/WaveScrambleText";
 
-import { heroFacts, links } from "./data";
+import { links } from "./data";
 import { HeroBackground } from "./HeroBackground";
 import { ArrowIcon } from "./icons";
 import { heroStep } from "./Line";
@@ -63,17 +63,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <dl className={styles.facts} data-hero-reveal style={heroStep(6)}>
-        {heroFacts.map((fact) => (
-          <div key={fact.label}>
-            <dt className={shared.label}>{fact.label}</dt>
-            <dd>
-              {fact.current && <i aria-hidden="true" />}
-              {fact.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }

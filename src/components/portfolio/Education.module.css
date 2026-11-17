@@ -1,5 +1,6 @@
+/* Last section before the contact block, so it also carries the bottom space. */
 .education {
-  padding: 0 var(--gutter) var(--section-space);
+  padding-bottom: var(--section-space);
   display: grid;
   grid-template-columns: 0.42fr 1fr 1fr;
   gap: 44px;
@@ -29,7 +30,7 @@
   .education {
     grid-template-columns: 1fr 1fr;
 
-    & > p {
+    & > h2 {
       grid-column: 1 / -1;
     }
   }
@@ -39,7 +40,7 @@
   .education {
     grid-template-columns: 1fr;
 
-    & > p {
+    & > h2 {
       grid-column: auto;
     }
   }

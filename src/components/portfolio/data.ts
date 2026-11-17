@@ -5,13 +5,6 @@ export const links = {
   cv: "https://drive.google.com/file/d/1LGtj7QosC5P_yXY0C7ZMM_M5yxTmknrq/view?usp=sharing",
 };
 
-export const heroFacts = [
-  { label: "Now", value: "Nomic AI", current: true },
-  { label: "Before", value: "Sombra, OmiSoft" },
-  { label: "Experience", value: "2+ years, commercial" },
-  { label: "Education", value: "BSc Computer Science" },
-];
-
 export type Project = {
   id: "syncr" | "nice-gadgets";
   number: string;
@@ -19,7 +12,6 @@ export type Project = {
   scope: string;
   title: string;
   summary: string;
-  details: { term: string; description: string }[];
   tags: string[];
   demo: string;
   source: string;
@@ -29,33 +21,11 @@ export const projects: Project[] = [
   {
     id: "syncr",
     number: "01",
-    category: "Featured project",
+    category: "Featured",
     scope: "Full-stack",
     title: "Syncr",
     summary:
-      "A team collaboration workspace unifying Kanban tasks, dashboards, calendars, real-time chat, notifications, and role-based teams.",
-    details: [
-      {
-        term: "Context",
-        description:
-          "Collaboration work was split across task, calendar, and messaging tools.",
-      },
-      {
-        term: "My role",
-        description:
-          "I designed and built the full product flow, from the React interface to the NestJS API and data model.",
-      },
-      {
-        term: "Engineering",
-        description:
-          "Socket.IO keeps chat and notifications live; PostgreSQL and role-based access keep team data structured and scoped.",
-      },
-      {
-        term: "Outcome",
-        description:
-          "One responsive workspace now covers six core collaboration flows with real-time updates and permission-aware teams.",
-      },
-    ],
+      "A team workspace that brings Kanban, calendars, and real-time chat into one place.",
     tags: ["React", "NestJS", "PostgreSQL", "Socket.IO"],
     demo: "https://demo.syncr.cc",
     source: "https://github.com/kinqbert/syncr",
@@ -67,30 +37,8 @@ export const projects: Project[] = [
     scope: "Front-end",
     title: "Nice Gadgets",
     summary:
-      "A polished device store with fast search, filtering, sorting, and rich product detail pages across screen sizes.",
-    details: [
-      {
-        term: "Context",
-        description:
-          "A large device catalog needed to remain easy to browse on both desktop and mobile.",
-      },
-      {
-        term: "My role",
-        description:
-          "I implemented the front-end product experience and its responsive catalog interactions as part of the project team.",
-      },
-      {
-        term: "Engineering",
-        description:
-          "Reusable React views and centralized Zustand state connect search, filters, sorting, and product detail navigation.",
-      },
-      {
-        term: "Outcome",
-        description:
-          "Shoppers can move from discovery to a detailed product view in one consistent flow across screen sizes.",
-      },
-    ],
-    tags: ["React", "Zustand", "SCSS", "BEM"],
+      "A device store with fast search, filtering, and sorting on any screen size.",
+    tags: ["React", "Zustand", "SCSS"],
     demo: "https://fs-mar24-kyrylos-witnesses.github.io/phone-catalog/",
     source: "https://github.com/fs-mar24-kyrylos-witnesses/phone-catalog",
   },
