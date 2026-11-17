@@ -1,5 +1,4 @@
-import { CopyEmailButton } from "./CopyEmailButton";
-import { emailAddress, emailHref, links } from "./data";
+import { links } from "./data";
 import { ArrowIcon } from "./icons";
 import { Line } from "./Line";
 import shared from "./shared.module.css";
@@ -7,7 +6,6 @@ import styles from "./Contact.module.css";
 
 const socials = [
   { label: "GitHub", href: links.github },
-  { label: "LinkedIn", href: links.linkedin },
   { label: "Telegram", href: links.telegram },
 ];
 
@@ -23,14 +21,25 @@ export function Contact() {
           <Line muted>worth building?</Line>
         </h2>
         <a
-          href={emailHref}
+          href={links.linkedin}
+          target="_blank"
+          rel="noreferrer"
           className={styles.button}
-          aria-label="Email Maksym about a project"
+          aria-label="Message Maksym on LinkedIn"
         >
           <ArrowIcon />
         </a>
       </div>
-      <CopyEmailButton email={emailAddress} />
+      <a
+        href={links.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        className={`${shared.display} ${styles.handle}`}
+        data-reveal="fade"
+      >
+        <span>/maksym-perekhodko</span>
+        <small className={shared.label}>Message me on LinkedIn ↗</small>
+      </a>
       <div className={styles.socials} data-reveal="stagger">
         {socials.map((social) => (
           <a

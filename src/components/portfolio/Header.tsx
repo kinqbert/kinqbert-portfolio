@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import PortfolioLogo from "@/assets/portfolio-logo.svg";
 
-import { emailHref } from "./data";
+import { links } from "./data";
 import { heroStep } from "./Line";
 import shared from "./shared.module.css";
 import styles from "./Header.module.css";
@@ -25,7 +25,12 @@ export function Header() {
             Stack
           </a>
         </nav>
-        <a href={emailHref} className={styles.cta}>
+        <a
+          href={links.linkedin}
+          className={styles.cta}
+          target="_blank"
+          rel="noreferrer"
+        >
           Let&apos;s talk
         </a>
       </div>

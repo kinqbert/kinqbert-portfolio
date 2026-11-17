@@ -5,9 +5,6 @@ export const links = {
   cv: "https://drive.google.com/file/d/1LGtj7QosC5P_yXY0C7ZMM_M5yxTmknrq/view?usp=sharing",
 };
 
-export const emailAddress = "perekhodko.maksym@gmail.com";
-export const emailHref = `mailto:${emailAddress}?subject=Let%27s%20build%20something`;
-
 export const heroFacts = [
   { label: "Now", value: "Nomic AI", current: true },
   { label: "Before", value: "Sombra, OmiSoft" },

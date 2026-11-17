@@ -53,7 +53,9 @@ export function Hero() {
               <ArrowIcon />
             </a>
             <a
-              href="#contact"
+              href={links.linkedin}
+              target="_blank"
+              rel="noreferrer"
               className={`${shared.underline} ${styles.textLink}`}
             >
               Get in touch
