@@ -43,10 +43,7 @@ export function WaveScrambleText({
               isInsideWave && originalCharacter !== " "
                 ? symbols[Math.floor(Math.random() * symbols.length)]
                 : originalCharacter;
-            element.style.color = isInsideWave ? "#ffffff" : "";
-            element.style.textShadow = isInsideWave
-              ? "0 0 14px rgba(255, 255, 255, 0.28)"
-              : "";
+            element.style.color = isInsideWave ? "var(--accent)" : "";
           });
         },
         onComplete: () => {
@@ -54,7 +51,6 @@ export function WaveScrambleText({
             if (!element) return;
             element.textContent = characters[index];
             element.style.color = "";
-            element.style.textShadow = "";
           });
         },
       });

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 
@@ -9,6 +9,23 @@ const dmSans = localFont({
   weight: "100 1000",
   display: "swap",
   variable: "--font-dm-sans",
+});
+
+const instrumentSerif = localFont({
+  src: [
+    {
+      path: "./fonts/InstrumentSerif-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/InstrumentSerif-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  display: "swap",
+  variable: "--font-instrument-serif",
 });
 
 const personJsonLd = {
@@ -37,7 +54,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Maksym Perekhodko — Full-stack Engineer",
-    description: "Reliable product engineering from interface to infrastructure.",
+    description:
+      "Reliable product engineering from interface to infrastructure.",
     type: "website",
     url: "/",
     images: [
@@ -52,12 +70,17 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Maksym Perekhodko — Full-stack Engineer",
-    description: "Reliable product engineering from interface to infrastructure.",
+    description:
+      "Reliable product engineering from interface to infrastructure.",
     images: ["/og-preview.png"],
   },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#111111",
 };
 
 export default function RootLayout({
@@ -66,7 +89,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html
+      lang="en"
+      className={`${dmSans.variable} ${instrumentSerif.variable}`}
+    >
       <head>
         <Script id="scroll-restoration" strategy="beforeInteractive">
           {`window.history.scrollRestoration = "manual";`}

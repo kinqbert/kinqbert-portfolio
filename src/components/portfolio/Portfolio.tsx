@@ -3,14 +3,11 @@ import type { CSSProperties, ReactNode } from "react";
 
 import PortfolioLogo from "@/assets/portfolio-logo.svg";
 
-import { SpotlightCard } from "@/components/reactbits/SpotlightCard";
-import { SpotlightGrid } from "@/components/reactbits/SpotlightGrid";
 import { WaveScrambleText } from "@/components/reactbits/WaveScrambleText";
 
 import { CopyEmailButton } from "./CopyEmailButton";
 import { HeroBackground } from "./HeroBackground";
 import { MotionController } from "./MotionController";
-import { ScrambleLink } from "./ScrambleLink";
 import styles from "./Portfolio.module.scss";
 
 const links = {
@@ -99,16 +96,20 @@ export function Portfolio() {
       <header className={styles.header} data-hero-reveal style={heroStep(0)}>
         <div className={styles.headerInner}>
           <a href="#top" className={styles.logo}>
-            <Image src={PortfolioLogo} alt="Maksym Perekhodko — home" priority />
+            <Image
+              src={PortfolioLogo}
+              alt="Maksym Perekhodko — home"
+              priority
+            />
           </a>
           <nav className={styles.nav} aria-label="Main navigation">
             <a href="#work">Projects</a>
             <a href="#experience">Experience</a>
             <a href="#stack">Stack</a>
           </nav>
-          <ScrambleLink href={emailHref} className={styles.headerCta}>
-            LET&apos;S TALK
-          </ScrambleLink>
+          <a href={emailHref} className={styles.headerCta}>
+            Let&apos;s talk
+          </a>
         </div>
       </header>
 
@@ -126,12 +127,12 @@ export function Portfolio() {
               <span
                 data-hero-reveal
                 style={heroStep(2)}
-                className={styles.outlineText}
+                className={styles.italic}
               >
                 systems that
               </span>
               <span data-hero-reveal style={heroStep(3)}>
-                hold up.
+                hold up<span className={styles.accentDot}>.</span>
               </span>
             </h1>
             <div
@@ -147,13 +148,18 @@ export function Portfolio() {
                 . I&apos;m a full-stack engineer.
               </p>
               <div className={styles.heroActions}>
-                <ScrambleLink
+                <a
                   href={links.cv}
                   className={styles.primaryButton}
-                  external
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  VIEW RÉSUMÉ
-                </ScrambleLink>
+                  View résumé
+                  <ArrowIcon />
+                </a>
+                <a href="#work" className={styles.textLink}>
+                  Selected work
+                </a>
               </div>
             </div>
           </div>
@@ -186,9 +192,7 @@ export function Portfolio() {
           </h2>
         </div>
 
-        <SpotlightCard
-          className={`${styles.project} ${styles.projectFeatured}`}
-        >
+        <article className={`${styles.project} ${styles.projectFeatured}`}>
           <div className={styles.projectCopy} data-reveal="fade">
             <div className={styles.projectTopline}>
               <span>01 / Featured project</span>
@@ -246,122 +250,121 @@ export function Portfolio() {
             </div>
           </div>
           <div
-            className={styles.syncrVisual}
+            className={styles.projectMedia}
             data-reveal="clip"
-            data-scroll="parallax"
             aria-hidden="true"
           >
-            <div className={styles.browserBar}>
-              <i />
-              <i />
-              <i />
-              <span>workspace / product-team</span>
-            </div>
-            <div className={styles.appShell}>
-              <aside>
-                <b>S</b>
+            <div className={styles.syncrVisual} data-scroll="parallax">
+              <div className={styles.browserBar}>
                 <i />
                 <i />
                 <i />
-                <i />
-              </aside>
-              <div className={styles.board}>
-                <div className={styles.boardHeader}>
-                  <span>Product sprint</span>
+                <span>workspace / product-team</span>
+              </div>
+              <div className={styles.appShell}>
+                <aside>
+                  <b>S</b>
                   <i />
-                </div>
-                <div className={styles.columns}>
-                  <div>
-                    <b>TO DO</b>
-                    <span />
-                    <span />
-                    <span />
+                  <i />
+                  <i />
+                  <i />
+                </aside>
+                <div className={styles.board}>
+                  <div className={styles.boardHeader}>
+                    <span>Product sprint</span>
+                    <i />
                   </div>
-                  <div>
-                    <b>IN PROGRESS</b>
-                    <span className={styles.activeCard} />
-                    <span />
-                  </div>
-                  <div>
-                    <b>DONE</b>
-                    <span />
-                    <span />
+                  <div className={styles.columns}>
+                    <div>
+                      <b>TO DO</b>
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div>
+                      <b>IN PROGRESS</b>
+                      <span className={styles.activeCard} />
+                      <span />
+                    </div>
+                    <div>
+                      <b>DONE</b>
+                      <span />
+                      <span />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </SpotlightCard>
+        </article>
 
-        <SpotlightCard
-          className={`${styles.project} ${styles.projectSecondary}`}
-          spotlightColor="rgba(255, 255, 255, 0.1)"
-        >
+        <article className={`${styles.project} ${styles.projectSecondary}`}>
           <div
-            className={styles.gadgetStoreVisual}
+            className={styles.projectMedia}
             data-reveal="clip"
-            data-scroll="parallax"
             aria-hidden="true"
           >
-            <div className={styles.browserBar}>
-              <i />
-              <i />
-              <i />
-              <span>nice-gadgets / catalog</span>
-            </div>
-            <div className={styles.storeShell}>
-              <header className={styles.storeHeader}>
-                <b>NG</b>
-                <nav>
-                  <span>Phones</span>
-                  <span>Tablets</span>
-                  <span>Accessories</span>
-                </nav>
+            <div className={styles.gadgetStoreVisual} data-scroll="parallax">
+              <div className={styles.browserBar}>
                 <i />
-              </header>
-              <div className={styles.storeBody}>
-                <aside className={styles.storeFilters}>
-                  <strong>Filters</strong>
-                  <span />
-                  <span />
-                  <span />
-                  <div>
-                    <i />
-                    <i />
-                  </div>
-                </aside>
-                <div className={styles.storeCatalog}>
-                  <div className={styles.storeCatalogHeader}>
+                <i />
+                <i />
+                <span>nice-gadgets / catalog</span>
+              </div>
+              <div className={styles.storeShell}>
+                <header className={styles.storeHeader}>
+                  <b>NG</b>
+                  <nav>
+                    <span>Phones</span>
+                    <span>Tablets</span>
+                    <span>Accessories</span>
+                  </nav>
+                  <i />
+                </header>
+                <div className={styles.storeBody}>
+                  <aside className={styles.storeFilters}>
+                    <strong>Filters</strong>
+                    <span />
+                    <span />
+                    <span />
                     <div>
-                      <small>Catalog</small>
-                      <strong>Mobile phones</strong>
+                      <i />
+                      <i />
                     </div>
-                    <span>24 products</span>
-                  </div>
-                  <div className={styles.productGrid}>
-                    <div className={styles.productCard}>
-                      <div className={styles.device}>
-                        <i />
-                        <span />
+                  </aside>
+                  <div className={styles.storeCatalog}>
+                    <div className={styles.storeCatalogHeader}>
+                      <div>
+                        <small>Catalog</small>
+                        <strong>Mobile phones</strong>
                       </div>
-                      <b>Phone 14 Pro</b>
-                      <small>$999</small>
+                      <span>24 products</span>
                     </div>
-                    <div className={styles.productCard}>
-                      <div className={styles.device}>
-                        <i />
-                        <span />
+                    <div className={styles.productGrid}>
+                      <div className={styles.productCard}>
+                        <div className={styles.device}>
+                          <i />
+                          <span />
+                        </div>
+                        <b>Phone 14 Pro</b>
+                        <small>$999</small>
                       </div>
-                      <b>Phone 15</b>
-                      <small>$1,099</small>
-                    </div>
-                    <div className={styles.productCard}>
-                      <div className={styles.device}>
-                        <i />
-                        <span />
+                      <div className={styles.productCard}>
+                        <div className={styles.device}>
+                          <i />
+                          <span />
+                        </div>
+                        <b>Phone 15</b>
+                        <small>$1,099</small>
                       </div>
-                      <b>Phone 15 Plus</b>
-                      <small>$1,199</small>
+                      <div className={styles.productCard}>
+                        <div className={styles.device}>
+                          <i />
+                          <span />
+                        </div>
+                        <b>Phone 15 Plus</b>
+                        <small>$1,199</small>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -384,8 +387,8 @@ export function Portfolio() {
               <div>
                 <dt>Context</dt>
                 <dd>
-                  A large device catalog needed to remain easy to browse on
-                  both desktop and mobile.
+                  A large device catalog needed to remain easy to browse on both
+                  desktop and mobile.
                 </dd>
               </div>
               <div>
@@ -405,8 +408,8 @@ export function Portfolio() {
               <div>
                 <dt>Outcome</dt>
                 <dd>
-                  Shoppers can move from discovery to a detailed product view
-                  in one consistent flow across screen sizes.
+                  Shoppers can move from discovery to a detailed product view in
+                  one consistent flow across screen sizes.
                 </dd>
               </div>
             </dl>
@@ -425,7 +428,7 @@ export function Portfolio() {
               </ProjectLink>
             </div>
           </div>
-        </SpotlightCard>
+        </article>
       </section>
 
       <section
@@ -447,7 +450,7 @@ export function Portfolio() {
             <div className={styles.experienceTopline}>
               <span>01</span>
               <span className={styles.current}>
-                <i data-pulse /> Current <em>AEC AI</em>
+                <i /> Current <em>AEC AI</em>
               </span>
             </div>
             <div className={styles.experienceTitle}>
@@ -537,7 +540,7 @@ export function Portfolio() {
             <Line muted>for the product in front of me.</Line>
           </h2>
         </div>
-        <SpotlightGrid className={styles.skillGrid}>
+        <div className={styles.skillGrid}>
           {skills.map((group) => (
             <div key={group.title} className={styles.skillCard}>
               <div data-reveal="fade">
@@ -551,7 +554,7 @@ export function Portfolio() {
               </div>
             </div>
           ))}
-        </SpotlightGrid>
+        </div>
       </section>
 
       <section className={styles.education} data-reveal="fade">
@@ -575,7 +578,7 @@ export function Portfolio() {
         <div className={styles.contactMain}>
           <h2 data-reveal="lines">
             <Line>Have something</Line>
-            <Line>worth building?</Line>
+            <Line muted>worth building?</Line>
           </h2>
           <a
             href={emailHref}
