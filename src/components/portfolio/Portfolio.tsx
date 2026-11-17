@@ -187,8 +187,8 @@ export function Portfolio() {
             Projects / Selected work
           </p>
           <h2 data-reveal="lines">
-            <Line>Built for real use,</Line>
-            <Line muted>not just the screenshot.</Line>
+            <Line>Things I&apos;ve built,</Line>
+            <Line muted>and how they work.</Line>
           </h2>
         </div>
 
@@ -440,8 +440,8 @@ export function Portfolio() {
             Experience / Where I&apos;ve built
           </p>
           <h2 data-reveal="lines">
-            <Line>Production-minded</Line>
-            <Line muted>from UI to infrastructure.</Line>
+            <Line>Where I&apos;ve worked,</Line>
+            <Line muted>and what I shipped there.</Line>
           </h2>
         </div>
 
@@ -536,8 +536,8 @@ export function Portfolio() {
             Stack / Hard skills
           </p>
           <h2 data-reveal="lines">
-            <Line>The right technology</Line>
-            <Line muted>for the product in front of me.</Line>
+            <Line>Tools I reach for,</Line>
+            <Line muted>day to day.</Line>
           </h2>
         </div>
         <div className={styles.skillGrid}>

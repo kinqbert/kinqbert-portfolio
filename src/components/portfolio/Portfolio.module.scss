@@ -259,7 +259,7 @@ $max: 1600px;
 }
 
 .heroTitle {
-  @include display(clamp(64px, 10.4vw, 184px));
+  @include display(clamp(48px, 6.4vw, 108px));
   line-height: 0.9;
   letter-spacing: -0.03em;
 
@@ -918,7 +918,7 @@ $max: 1600px;
   .headerCta { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 18px; white-space: nowrap; }
   .hero { min-height: calc(100svh - 64px); }
   .heroInner { padding-top: 64px; align-content: center; }
-  .heroTitle { font-size: clamp(54px, 17vw, 96px); line-height: 0.92; }
+  .heroTitle { font-size: clamp(42px, 12vw, 60px); line-height: 0.95; }
   .heroBottom { gap: 28px; }
   .heroActions { flex-direction: column; gap: 14px; }
   .about { grid-template-columns: 1fr; gap: 24px; }
