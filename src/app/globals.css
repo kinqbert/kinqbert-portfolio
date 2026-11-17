@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+
+  /* Ink (surfaces) */
+  --bg: #111111;
+  --bg-2: #1a1917; /* mats, hover */
+  --bg-3: #2a2824;
+
+  /* Paper (text) */
+  --fg: #f3eee3;
+  --fg-2: #ddd6c7; /* pressed / hover on cream fills */
+  --muted: #a39d92; /* ~7:1 on --bg */
+  --faint: #67625a; /* decorative only, not body text */
+
+  --line: rgba(243, 238, 227, 0.11);
+  --line-strong: rgba(243, 238, 227, 0.22);
+
+  /* Terracotta: bright enough to read on ink (~5:1); the deep shade sits on cream. */
+  --accent: #d0745a;
+  --accent-deep: #8b3a2a;
+
+  /* The inverted contact block. */
+  --inverse-bg: #f3eee3;
+  --inverse-fg: #111111;
+  --inverse-muted: #5f5a51;
+  --inverse-line: rgba(17, 17, 17, 0.18);
+
+  --font-serif: var(--font-instrument-serif), "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --max: 1600px;
+  --section-space: clamp(80px, 9vw, 160px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--bg-3) var(--bg);
+  scrollbar-width: thin;
+  background: var(--bg);
+}
+
+/* Lenis animates anchor jumps itself; native smooth scrolling would fight it. */
+html.lenis {
+  scroll-behavior: auto;
+}
+
+body {
+  min-height: 100dvh;
+  width: 100%;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "kern";
+}
+
+/* Grain: a fixed, static noise layer so the black reads as a surface, not a flat fill. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.89 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+button,
+a {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 1.5px solid currentColor;
+  outline-offset: 4px;
+}
+
+::selection {
+  color: var(--bg);
+  background: var(--fg);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid var(--bg);
+  border-radius: 99px;
+  background: var(--bg-3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--faint);
+}

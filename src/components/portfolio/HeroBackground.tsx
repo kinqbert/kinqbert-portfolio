@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 
-import styles from "./Portfolio.module.scss";
+import styles from "./HeroBackground.module.css";
 
 const Dither = dynamic(() => import("@/components/reactbits/Dither"), {
   ssr: false,
@@ -28,7 +28,7 @@ export function HeroBackground() {
   return (
     <div
       ref={container}
-      className={`${styles.ditherBackground} ${isReady ? styles.ditherReady : ""}`}
+      className={`${styles.background} ${isReady ? styles.ready : ""}`}
       aria-hidden="true"
     >
       <Dither

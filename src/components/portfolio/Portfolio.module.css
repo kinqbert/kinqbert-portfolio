@@ -1,0 +1,81 @@
+.page {
+  --header-h: 80px;
+  --gutter: clamp(20px, 4vw, 64px);
+  /* Lines content up with the 1600px column while the background runs edge to edge. */
+  --bleed: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+  position: relative;
+  min-height: 100vh;
+  /* clip, not hidden: hidden makes .page a scroll container and breaks the sticky header. */
+  overflow: clip;
+  color: var(--fg);
+  background: var(--bg);
+
+  /* Scroll-synced elements change every frame; own GPU layers keep them from repainting. */
+  & [data-scroll="hero"] {
+    will-change: transform, opacity;
+  }
+
+  & [data-scroll="parallax"] {
+    will-change: transform;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    --header-h: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance runs in CSS so it starts on first paint, before hydration. */
+  .page [data-hero-reveal] {
+    animation: heroReveal 1200ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+
+  /* Initial states for MotionController reveals; set in CSS so nothing flashes before hydration. */
+  :global(html.motion) .page {
+    & [data-reveal="fade"],
+    & [data-reveal="clip"],
+    & [data-reveal="stagger"] > * {
+      opacity: 0;
+    }
+
+    & [data-reveal="lines"] [data-line] {
+      transform: translateY(110%);
+    }
+  }
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(6px);
+  }
+}
+
+.scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 1px;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

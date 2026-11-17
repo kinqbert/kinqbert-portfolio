@@ -1,0 +1,25 @@
+/*
+ * The dither renders light dots on black; screen-blending drops the black so only
+ * the dots land on the page. The mask keeps it to the upper right, away from the copy.
+ */
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity 1600ms ease;
+  mask-image: radial-gradient(ellipse 68% 92% at 84% 22%, black 0%, rgba(0, 0, 0, 0.75) 40%, transparent 100%);
+}
+
+.ready {
+  opacity: 0.42;
+}
+
+@media (max-width: 720px) {
+  .background {
+    mask-image: radial-gradient(ellipse 100% 55% at 90% 10%, black 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
+  }
+}

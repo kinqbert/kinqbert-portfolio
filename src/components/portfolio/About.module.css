@@ -1,0 +1,28 @@
+.about {
+  padding: var(--section-space) var(--gutter);
+  display: grid;
+  grid-template-columns: 0.42fr 1fr;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+
+.text {
+  --size: clamp(28px, 3.2vw, 50px);
+  --tracking: -0.015em;
+  max-width: 1040px;
+  color: var(--muted);
+  line-height: 1.16;
+  text-wrap: pretty;
+
+  & em {
+    color: var(--fg);
+    font-style: italic;
+  }
+}
+
+@media (max-width: 720px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

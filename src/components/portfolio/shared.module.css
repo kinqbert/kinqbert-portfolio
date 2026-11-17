@@ -1,0 +1,123 @@
+/*
+ * Building blocks shared across sections. Variants are driven by custom
+ * properties (--size, --label-size, …) set from each section's module, so the
+ * result never depends on which stylesheet happens to load first.
+ */
+
+/* Centered 1600px content column. */
+.column {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--max));
+  margin-inline: auto;
+}
+
+/* Small monospace caps: kickers, dates, field names. */
+.label {
+  color: var(--label-color, var(--muted));
+  font-family: var(--font-mono);
+  font-size: var(--label-size, 11.5px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: var(--label-tracking, 0.14em);
+  text-transform: uppercase;
+}
+
+/* Serif display type; each use sets --size (and optionally --tracking). */
+.display {
+  font-family: var(--font-serif);
+  font-size: var(--size);
+  font-weight: 400;
+  letter-spacing: var(--tracking, -0.02em);
+}
+
+/* Hairline that draws in under a link on hover. Set --underline-rest: 1 to keep it visible at rest. */
+.underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: var(--underline-rest-opacity, 1);
+    transform: scaleX(var(--underline-rest, 0));
+    transform-origin: right;
+    transition: transform 420ms var(--ease-out), opacity 220ms ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/*
+ * Heading line mask. The padding grows the clip box past the text box so italic
+ * overhangs (the "?" in "building?") and descenders aren't cut; the negative
+ * margins cancel it out so layout is unchanged.
+ */
+.line {
+  display: block;
+  padding: 0 0.2em 0.2em 0.06em;
+  margin: 0 -0.2em -0.2em -0.06em;
+  overflow: hidden;
+
+  & > [data-line] {
+    display: block;
+    will-change: transform;
+  }
+}
+
+.muted {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.accentDot {
+  color: var(--accent);
+}
+
+/* Standard section: kicker on the left, big two-line heading on the right.
+   Sections tune their vertical rhythm with --section-top / --section-bottom. */
+.section {
+  padding: var(--section-top, var(--section-space)) var(--gutter)
+    var(--section-bottom, 0);
+}
+
+.sectionHeading {
+  margin-bottom: clamp(56px, 7vw, 112px);
+  display: grid;
+  grid-template-columns: 0.42fr 1fr;
+  align-items: start;
+
+  & > p {
+    padding-top: 0.9em;
+  }
+
+  & h2 {
+    --size: clamp(48px, 7vw, 116px);
+    --tracking: -0.025em;
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+}
+
+@media (max-width: 720px) {
+  .sectionHeading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+
+    & > p {
+      padding-top: 0;
+    }
+
+    & h2 {
+      --size: clamp(44px, 13vw, 68px);
+    }
+  }
+}

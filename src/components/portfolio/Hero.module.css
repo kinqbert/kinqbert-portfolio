@@ -1,0 +1,202 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100svh;
+  /* Tuck up under the sticky header so the dither shows through its blur. */
+  margin-top: calc(var(--header-h) * -1);
+  padding-top: var(--header-h);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: clamp(64px, 10vh, 120px) var(--gutter) clamp(56px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.name {
+  --label-color: var(--fg);
+  --label-size: 12px;
+  margin-bottom: clamp(28px, 4vh, 44px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  &::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  /* Scramble glyphs swap per character; keep them from reflowing the line. */
+  & span {
+    white-space: pre;
+  }
+}
+
+.title {
+  --size: clamp(48px, 6.4vw, 108px);
+  --tracking: -0.03em;
+  line-height: 0.96;
+  text-wrap: balance;
+
+  & > span {
+    display: block;
+  }
+}
+
+.titleMuted {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.bottom {
+  margin-top: clamp(36px, 5vh, 56px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px 48px;
+  flex-wrap: wrap;
+
+  & > p {
+    max-width: 420px;
+    color: var(--muted);
+    font-size: clamp(16px, 1.15vw, 18px);
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.primaryButton {
+  min-height: 52px;
+  padding: 0 26px 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 999px;
+  color: var(--bg);
+  background: var(--fg);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: background 260ms ease;
+
+  & svg {
+    width: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: transform 420ms var(--ease-out);
+  }
+
+  &:hover {
+    background: var(--fg-2);
+  }
+
+  &:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+.textLink {
+  --underline-rest: 1;
+  --underline-rest-opacity: 0.35;
+  padding-block: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* A CV's first lines, set as a quiet ledger along the bottom of the hero. */
+.facts {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  & > div {
+    padding: 22px 24px 30px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  & > div + div {
+    padding-left: 24px;
+    border-left: 1px solid var(--line);
+  }
+
+  & dt {
+    --label-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  & dd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg);
+    font-size: 15px;
+  }
+
+  & i {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}
+
+@media (max-width: 720px) {
+  .inner {
+    padding-top: 48px;
+  }
+
+  .title {
+    --size: clamp(40px, 11.5vw, 56px);
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .actions {
+    gap: 24px;
+  }
+
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    & > div {
+      padding: 18px 16px 22px 0;
+    }
+
+    & > div + div {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    & > div:nth-child(even) {
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
+    }
+  }
+}

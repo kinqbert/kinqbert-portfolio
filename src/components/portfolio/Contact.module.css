@@ -1,0 +1,124 @@
+/* The one inverted block: cream paper with ink, so the page closes on its brightest moment. */
+.contact {
+  /* Re-point the shared tokens so labels and muted heading lines flip with the block. */
+  --muted: var(--inverse-muted);
+
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: var(--section-space) var(--bleed) 64px;
+  color: var(--inverse-fg);
+  background: var(--inverse-bg);
+}
+
+.main {
+  margin-block: clamp(48px, 6vw, 88px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+
+  & h2 {
+    --size: clamp(72px, 11vw, 196px);
+    --tracking: -0.03em;
+    line-height: 0.9;
+  }
+}
+
+.button {
+  width: clamp(96px, 10vw, 152px);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--inverse-bg);
+  background: var(--inverse-fg);
+  transition: transform 600ms var(--ease-out), background 300ms ease;
+
+  & svg {
+    width: 34%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+  }
+
+  &:hover {
+    background: var(--accent-deep);
+    transform: rotate(45deg);
+  }
+}
+
+.email {
+  --size: clamp(28px, 3.8vw, 60px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 0 28px;
+  border: 0;
+  border-bottom: 1px solid var(--inverse-line);
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: copy;
+
+  & > span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font: inherit;
+  }
+
+  & small {
+    --label-size: 11px;
+    transition: color 220ms ease;
+  }
+
+  &:hover small {
+    --label-color: var(--inverse-fg);
+  }
+}
+
+.socials {
+  padding-top: 28px;
+  display: flex;
+  gap: 32px;
+
+  & a {
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  & svg {
+    width: 13px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: transform 420ms var(--ease-out);
+  }
+
+  & a:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (max-width: 720px) {
+  .main h2 {
+    --size: clamp(60px, 18vw, 104px);
+  }
+
+  .socials {
+    flex-wrap: wrap;
+
+    & a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}

@@ -11,7 +11,7 @@ The production site is available at [kinqbert.dev](https://kinqbert.dev/).
 - Anime.js 4 for scoped motion and reveal timelines
 - React Bits Dither background and local interaction components
 - Three.js, React Three Fiber, and postprocessing for the WebGL background
-- SCSS modules
+- CSS Modules (plain CSS with native nesting)
 
 ## Development
 

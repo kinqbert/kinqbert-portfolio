@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 
-import "./globals.scss";
+import "@/styles/reset.css";
+import "lenis/dist/lenis.css";
+import "./globals.css";
 
 const dmSans = localFont({
   src: "./fonts/DMSans-Variable.woff2",

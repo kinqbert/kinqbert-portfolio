@@ -1,0 +1,156 @@
+.experience {
+  --section-bottom: var(--section-space);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+}
+
+.card {
+  min-height: 480px;
+  padding: clamp(28px, 3vw, 44px) clamp(24px, 2.6vw, 40px) 8px;
+  display: flex;
+  flex-direction: column;
+  transition: background 400ms ease;
+
+  & + & {
+    border-left: 1px solid var(--line);
+  }
+
+  &:hover {
+    background: var(--bg-2);
+  }
+
+  & > h3 {
+    --size: clamp(32px, 3.2vw, 50px);
+    margin-top: 14px;
+    line-height: 1;
+  }
+
+  & > ul {
+    margin-top: auto;
+    padding-block: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  & > ul li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  & > ul li::before {
+    content: "";
+    position: absolute;
+    top: 0.78em;
+    left: 0;
+    width: 8px;
+    height: 1px;
+    background: var(--faint);
+  }
+}
+
+.topline,
+.title {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.topline {
+  --label-size: 11px;
+}
+
+.title {
+  margin-top: clamp(56px, 6vw, 88px);
+  align-items: baseline;
+
+  & p {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  & time {
+    --label-size: 11px;
+    --label-tracking: 0.08em;
+    white-space: nowrap;
+  }
+}
+
+.current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg);
+
+  & i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  & em {
+    margin-left: 2px;
+    padding-left: 10px;
+    border-left: 1px solid var(--line-strong);
+    color: var(--muted);
+    font-style: normal;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card:first-child {
+    grid-column: 1 / -1;
+    min-height: 380px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card:nth-child(2) {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 0;
+    padding-inline: 0;
+    border-left: 0 !important;
+
+    &:first-child {
+      grid-column: auto;
+    }
+
+    & + & {
+      border-top: 1px solid var(--line);
+    }
+
+    &:hover {
+      background: transparent;
+    }
+
+    & > ul {
+      margin-top: 28px;
+    }
+  }
+
+  .title {
+    margin-top: 40px;
+  }
+}

@@ -7,7 +7,7 @@ import { Effect } from "postprocessing";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-import styles from "./Dither.module.scss";
+import styles from "./Dither.module.css";
 
 const waveVertexShader = `
   precision highp float;

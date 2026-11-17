@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import styles from "./Portfolio.module.scss";
+import shared from "./shared.module.css";
+import styles from "./Contact.module.css";
 
 export function CopyEmailButton({ email }: { email: string }) {
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -35,14 +36,16 @@ export function CopyEmailButton({ email }: { email: string }) {
 
   return (
     <button
-      className={styles.email}
+      className={`${shared.display} ${styles.email}`}
       type="button"
       onClick={copyEmail}
       aria-label={`Copy ${email} to clipboard`}
       data-reveal="fade"
     >
       <span>{email}</span>
-      <small aria-live="polite">{isCopied ? "Copied" : "Click to copy"}</small>
+      <small className={shared.label} aria-live="polite">
+        {isCopied ? "Copied" : "Click to copy"}
+      </small>
     </button>
   );
 }
