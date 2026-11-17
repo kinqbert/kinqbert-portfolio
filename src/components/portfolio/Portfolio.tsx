@@ -116,54 +116,72 @@ export function Portfolio() {
       <section className={styles.hero}>
         <HeroBackground />
         <div className={styles.heroInner} data-scroll="hero">
-          <div className={styles.heroMain}>
-            <h1
-              className={styles.heroTitle}
-              aria-label="I build digital systems that hold up"
-            >
-              <span data-hero-reveal style={heroStep(1)}>
-                I build digital
-              </span>
-              <span
-                data-hero-reveal
-                style={heroStep(2)}
-                className={styles.italic}
-              >
-                systems that
-              </span>
-              <span data-hero-reveal style={heroStep(3)}>
-                hold up<span className={styles.accentDot}>.</span>
-              </span>
-            </h1>
-            <div
-              className={styles.heroBottom}
+          <p className={styles.heroName} data-hero-reveal style={heroStep(1)}>
+            <WaveScrambleText>Maksym Perekhodko</WaveScrambleText>
+          </p>
+          <h1
+            className={styles.heroTitle}
+            aria-label="I build digital systems that hold up."
+          >
+            <span data-hero-reveal style={heroStep(2)}>
+              I build digital
+            </span>
+            <span
               data-hero-reveal
-              style={heroStep(4)}
+              style={heroStep(3)}
+              className={styles.italic}
             >
-              <p>
-                My name is{" "}
-                <WaveScrambleText className={styles.animatedName}>
-                  Maksym Perekhodko
-                </WaveScrambleText>
-                . I&apos;m a full-stack engineer.
-              </p>
-              <div className={styles.heroActions}>
-                <a
-                  href={links.cv}
-                  className={styles.primaryButton}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View résumé
-                  <ArrowIcon />
-                </a>
-                <a href="#work" className={styles.textLink}>
-                  Selected work
-                </a>
-              </div>
+              systems that
+            </span>
+            <span data-hero-reveal style={heroStep(4)}>
+              hold up<span className={styles.accentDot}>.</span>
+            </span>
+          </h1>
+          <div
+            className={styles.heroBottom}
+            data-hero-reveal
+            style={heroStep(5)}
+          >
+            <p>
+              I ship production web apps end to end with React, TypeScript,
+              Node.js, and NestJS.
+            </p>
+            <div className={styles.heroActions}>
+              <a
+                href={links.cv}
+                className={styles.primaryButton}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View résumé
+                <ArrowIcon />
+              </a>
+              <a href="#contact" className={styles.textLink}>
+                Get in touch
+              </a>
             </div>
           </div>
         </div>
+        <dl className={styles.heroFacts} data-hero-reveal style={heroStep(6)}>
+          <div>
+            <dt>Now</dt>
+            <dd>
+              <i aria-hidden="true" /> Nomic AI
+            </dd>
+          </div>
+          <div>
+            <dt>Before</dt>
+            <dd>Sombra, OmiSoft</dd>
+          </div>
+          <div>
+            <dt>Experience</dt>
+            <dd>2+ years, commercial</dd>
+          </div>
+          <div>
+            <dt>Education</dt>
+            <dd>BSc Computer Science</dd>
+          </div>
+        </dl>
       </section>
 
       <section className={styles.about} aria-labelledby="about-heading">

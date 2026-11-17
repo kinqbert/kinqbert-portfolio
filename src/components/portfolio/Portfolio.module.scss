@@ -59,7 +59,8 @@ $max: 1600px;
   --bleed: max(var(--gutter), calc((100% - #{$max}) / 2 + var(--gutter)));
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  // clip, not hidden: hidden makes .page a scroll container and breaks the sticky header.
+  overflow: clip;
   color: var(--fg);
   background: var(--bg);
 }
@@ -99,11 +100,13 @@ $max: 1600px;
 .page [data-scroll="hero"] { will-change: transform, opacity; }
 .page [data-scroll="parallax"] { will-change: transform; }
 
-// Heading line mask; the padding keeps descenders from being clipped at tight line-heights.
+// Heading line mask. The padding grows the clip box past the text box so italic
+// overhangs (the "?" in "building?") and descenders aren't cut; the negative
+// margins cancel it out so layout is unchanged.
 .line {
   display: block;
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+  padding: 0 0.2em 0.2em 0.06em;
+  margin: 0 -0.2em -0.2em -0.06em;
   overflow: hidden;
 
   > [data-line] {
@@ -149,9 +152,17 @@ $max: 1600px;
 
 /* ---------- Header ---------- */
 
+// Sticky frosted header; the hero tucks up underneath it so the dither shows through the blur.
 .header {
-  height: 80px;
+  --header-h: 80px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
   border-bottom: 1px solid var(--line);
+  background: rgba(17, 17, 17, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
 .headerInner {
@@ -208,22 +219,28 @@ $max: 1600px;
 /* ---------- Hero ---------- */
 
 .hero {
+  --header-h: 80px;
   position: relative;
-  min-height: calc(100svh - 80px);
+  min-height: 100svh;
+  margin-top: calc(var(--header-h) * -1);
+  padding-top: var(--header-h);
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .heroInner {
+  position: relative;
+  z-index: 1;
   width: min(100%, $max);
-  min-height: inherit;
   margin-inline: auto;
-  padding: clamp(72px, 11vh, 132px) var(--gutter) 72px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
+  padding: clamp(64px, 10vh, 120px) var(--gutter) clamp(56px, 8vh, 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 // The dither renders light dots on black; screen-blending drops the black so only
-// the dots land on the page. The dark radial ::after clears them behind the headline.
+// the dots land on the page. The mask keeps it to the upper right, away from the copy.
 .ditherBackground {
   position: absolute;
   inset: 0;
@@ -233,81 +250,107 @@ $max: 1600px;
   pointer-events: none;
   mix-blend-mode: screen;
   transition: opacity 1600ms ease;
-  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse 54% 48% at 50% 50%, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.45) 60%, transparent 100%);
-  }
+  mask-image: radial-gradient(ellipse 68% 92% at 84% 22%, black 0%, rgba(0, 0, 0, 0.75) 40%, transparent 100%);
 }
 
 .ditherReady { opacity: 0.42; }
-
-.heroMain {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  text-align: center;
-}
 
 .kicker,
 .projectTopline {
   @include label;
 }
 
-.heroTitle {
-  @include display(clamp(48px, 6.4vw, 108px));
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+.heroName {
+  @include label;
+  margin-bottom: clamp(28px, 4vh, 44px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--fg);
+  font-size: 12px;
 
-  > span {
-    display: block;
-    width: max-content;
-    max-width: 100%;
-    margin-inline: auto;
-    // Negative tracking lets the last glyph overhang the box; pad it back so the ink centers.
-    padding-right: 0.03em;
+  &::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--line-strong);
   }
 
-  .italic { padding-right: 0.08em; }
+  // Scramble glyphs swap per character; keep them from reflowing the line.
+  span { white-space: pre; }
+}
+
+.heroTitle {
+  @include display(clamp(48px, 6.4vw, 108px));
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+
+  > span { display: block; }
+  .italic { color: var(--muted); }
 }
 
 .heroBottom {
-  margin-top: clamp(40px, 6vh, 64px);
+  margin-top: clamp(36px, 5vh, 56px);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px 48px;
+  flex-wrap: wrap;
 
   > p {
-    max-width: 460px;
+    max-width: 420px;
     color: var(--muted);
-    font-size: clamp(16px, 1.2vw, 18px);
+    font-size: clamp(16px, 1.15vw, 18px);
     line-height: 1.6;
     letter-spacing: -0.005em;
-
-    .animatedName {
-      display: inline-block;
-      color: var(--fg);
-      font-family: var(--font-mono);
-      font-size: 0.9em;
-      font-weight: 400;
-      letter-spacing: 0;
-      white-space: pre;
-
-      > span { font: inherit; transition: color 80ms linear; }
-    }
   }
 }
 
 .heroActions {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 32px;
+}
+
+// A CV's first lines, set as a quiet ledger along the bottom of the hero.
+.heroFacts {
+  position: relative;
+  z-index: 1;
+  width: min(100%, $max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  > div {
+    padding: 22px 24px 30px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+
+  dt {
+    @include label;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  dd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg);
+    font-size: 15px;
+  }
+
+  i {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--accent);
+  }
 }
 
 .primaryButton {
@@ -912,15 +955,21 @@ $max: 1600px;
 }
 
 @media (max-width: 720px) {
-  .header { height: 64px; }
+  .header,
+  .hero { --header-h: 64px; }
   .headerInner { grid-template-columns: 1fr 1fr; }
   .nav { display: none; }
   .headerCta { min-height: 44px; display: inline-flex; align-items: center; padding: 10px 18px; white-space: nowrap; }
-  .hero { min-height: calc(100svh - 64px); }
-  .heroInner { padding-top: 64px; align-content: center; }
-  .heroTitle { font-size: clamp(42px, 12vw, 60px); line-height: 0.95; }
-  .heroBottom { gap: 28px; }
-  .heroActions { flex-direction: column; gap: 14px; }
+  .hero { min-height: 100svh; }
+  .heroInner { padding-top: 48px; }
+  .ditherBackground { mask-image: radial-gradient(ellipse 100% 55% at 90% 10%, black 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%); }
+  .heroTitle { font-size: clamp(40px, 11.5vw, 56px); }
+  .heroBottom { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .heroActions { gap: 24px; }
+  .heroFacts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .heroFacts > div { padding: 18px 16px 22px 0; }
+  .heroFacts > div + div { padding-left: 0; border-left: 0; }
+  .heroFacts > div:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
   .about { grid-template-columns: 1fr; gap: 24px; }
   .sectionHeading { grid-template-columns: 1fr; gap: 20px; }
   .sectionHeading .kicker { padding-top: 0; }
