@@ -2,6 +2,7 @@
 .contact {
   /* Re-point the shared tokens so labels and muted heading lines flip with the block. */
   --muted: var(--inverse-muted);
+  --focus: var(--inverse-fg);
 
   position: relative;
   z-index: 1;
@@ -43,7 +44,9 @@
     stroke-width: 1;
   }
 
-  &:hover {
+  /* The orb and the handle are one action: hovering or focusing either turns the orb. */
+  &:hover,
+  .contact:has(.handle:hover, .handle:focus-visible) & {
     background: var(--accent-deep);
     transform: rotate(45deg);
   }

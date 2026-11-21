@@ -119,6 +119,13 @@
   padding-block: 4px;
   font-size: 14px;
   font-weight: 500;
+
+  /* Invisible padding grows the tap target to ~44px without pushing the underline away. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -12px -10px;
+  }
 }
 
 @media (max-width: 720px) {

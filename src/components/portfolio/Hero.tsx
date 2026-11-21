@@ -42,23 +42,24 @@ export function Hero() {
             I ship production web apps end to end with React, TypeScript,
             Node.js, and NestJS.
           </p>
+          {/* LinkedIn is the goal, so it gets the filled pill; the résumé is the supporting link. */}
           <div className={styles.actions}>
             <a
-              href={links.cv}
+              href={links.linkedin}
               className={styles.primaryButton}
               target="_blank"
               rel="noreferrer"
             >
-              View résumé
+              Get in touch
               <ArrowIcon />
             </a>
             <a
-              href={links.linkedin}
+              href={links.cv}
               target="_blank"
               rel="noreferrer"
               className={`${shared.underline} ${styles.textLink}`}
             >
-              Get in touch
+              View résumé
             </a>
           </div>
         </div>

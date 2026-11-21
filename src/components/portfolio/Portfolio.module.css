@@ -18,11 +18,17 @@
   & [data-scroll="parallax"] {
     will-change: transform;
   }
+
+  /* Anchor jumps (native and Lenis) land the section label clear of the sticky header. */
+  & section[id] {
+    scroll-margin-top: max(0px, calc(var(--header-h) + 24px - var(--section-space)));
+  }
 }
 
 @media (max-width: 720px) {
   .page {
-    --header-h: 64px;
+    /* 64px bar + 44px section-link row. */
+    --header-h: 108px;
   }
 }
 

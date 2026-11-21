@@ -15,11 +15,11 @@ export function Header() {
           <Image src={PortfolioLogo} alt="Maksym Perekhodko — home" priority />
         </a>
         <nav className={styles.nav} aria-label="Main navigation">
-          <a href="#work" className={shared.underline}>
-            Projects
-          </a>
           <a href="#experience" className={shared.underline}>
             Experience
+          </a>
+          <a href="#work" className={shared.underline}>
+            Projects
           </a>
           <a href="#stack" className={shared.underline}>
             Stack

@@ -67,13 +67,44 @@
   }
 }
 
+/* Phones: the section links drop to their own row under the bar, so a recruiter can still jump to Experience. */
 @media (max-width: 720px) {
   .inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 64px 44px;
+    grid-template-areas:
+      "logo cta"
+      "nav nav";
+  }
+
+  .logo {
+    grid-area: logo;
+    min-height: 44px;
+  }
+
+  .cta {
+    grid-area: cta;
   }
 
   .nav {
-    display: none;
+    grid-area: nav;
+    height: 100%;
+    align-items: center;
+    gap: 28px;
+    border-top: 1px solid var(--line);
+
+    & a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding-block: 0;
+      font-size: 13.5px;
+    }
+
+    /* The hover underline sits at the link's bottom; on a 44px row pull it in under the text. */
+    & a::after {
+      bottom: 12px;
+    }
   }
 
   .cta {

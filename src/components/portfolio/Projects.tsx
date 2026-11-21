@@ -54,10 +54,18 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Projects() {
   return (
-    <section className={`${shared.column} ${styles.projects}`} id="work">
+    <section
+      className={`${shared.column} ${styles.projects}`}
+      id="work"
+      aria-labelledby="work-heading"
+    >
       <div className={styles.inner}>
-        <h2 className={`${shared.label} ${styles.label}`} data-reveal="fade">
-          02 — Projects
+        <h2
+          className={`${shared.label} ${styles.label}`}
+          id="work-heading"
+          data-reveal="fade"
+        >
+          03 — Projects
         </h2>
         <div className={styles.grid}>
           {projects.map((project) => (

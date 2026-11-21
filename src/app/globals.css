@@ -29,6 +29,9 @@
   --font-sans: var(--font-dm-sans), Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
+  /* Focus ring; surfaces that flip (the contact sheet) re-point it. */
+  --focus: var(--fg);
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout */
@@ -78,7 +81,8 @@ a {
 }
 
 :focus-visible {
-  outline: 1.5px solid currentColor;
+  /* Not currentColor: a cream-filled button's ink text would draw an ink ring on the ink page. */
+  outline: 1.5px solid var(--focus);
   outline-offset: 4px;
 }
 

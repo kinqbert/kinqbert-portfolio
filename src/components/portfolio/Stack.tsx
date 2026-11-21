@@ -4,10 +4,15 @@ import styles from "./Stack.module.css";
 
 export function Stack() {
   return (
-    <section className={`${shared.column} ${shared.block}`} id="stack">
+    <section
+      className={`${shared.column} ${shared.block}`}
+      id="stack"
+      aria-labelledby="stack-heading"
+    >
       <div className={shared.blockInner}>
         <h2
           className={`${shared.label} ${shared.sectionLabel}`}
+          id="stack-heading"
           data-reveal="fade"
         >
           04 — Stack

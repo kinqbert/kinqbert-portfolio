@@ -11,12 +11,16 @@ const socials = [
 
 export function Contact() {
   return (
-    <section className={styles.contact} id="contact">
+    <section
+      className={styles.contact}
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
       <p className={shared.label} data-reveal="fade">
         06 — Contact
       </p>
       <div className={styles.main}>
-        <h2 className={shared.display} data-reveal="lines">
+        <h2 className={shared.display} id="contact-heading" data-reveal="lines">
           <Line>Have something</Line>
           <Line muted>worth building?</Line>
         </h2>
@@ -25,7 +29,9 @@ export function Contact() {
           target="_blank"
           rel="noreferrer"
           className={styles.button}
-          aria-label="Message Maksym on LinkedIn"
+          // The labelled handle link below goes to the same place; keep one stop for keyboard and screen readers.
+          tabIndex={-1}
+          aria-hidden="true"
         >
           <ArrowIcon />
         </a>

@@ -23,8 +23,8 @@ export function Portfolio() {
       <Header />
       <Hero />
       <About />
-      <Projects />
       <Experience />
+      <Projects />
       <Stack />
       <Education />
       <Contact />
